@@ -1,41 +1,58 @@
 const nodemailer = require('nodemailer');
 
-const email = (username, mail) => {
-  const mailTransporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'udaymittal0123@gmail.com',
-      pass: process.env.EMAIL_PASSWORD,
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
-    //activate in gmail "less secure app" option
-  });
+module.exports = class Email {
+  constructor(user, url) {
+    (this.to = user.email),
+      (this.name = user.username),
+      (this.url = url),
+      (this.from = 'Facebook');
+  }
 
-  const send = async (subject) => {
+  newTransport() {
+    // using mailtrap for testing
+    return nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: process.env.EMAIL_PORT,
+      auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+      //activate in gmail "less secure app" option
+    });
+  }
+
+  async send(message, subject) {
     // 1) define the email options
     const mailOptions = {
       from: 'udaymittal0123@gmail.com',
-      to: mail,
+      to: this.to,
       subject,
-      text: `Hello ${username}.\nWelcome to Facebook.\n`,
+      text: message,
     };
 
     // 2) create a transport and send email
-    await mailTransporter.sendMail(mailOptions, (err, data) => {
+    await this.newTransport().sendMail(mailOptions, (err, data) => {
       if (err) console.log(err);
       else console.log('Email sent successfully');
     });
-  };
+  }
 
   //For sending welcome email anytime a new user sign up
-  const sendWelcome = async () => {
+  async sendWelcome() {
     // Relevant subject is added here
-    await send('Welcome to Facebook!');
-  };
+    await send('Welcome', 'Welcome to Facebook!');
+  }
+
+  // password reset
+  async sendPasswordReset(message) {
+    await this.send(
+      message,
+      'Your password reset token (valid for only 10 minutes)'
+    );
+  }
 
   //We can use this same function for more emails too
 };
-
-module.exports = email;

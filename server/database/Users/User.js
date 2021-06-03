@@ -1,4 +1,7 @@
+// packages
 const mongoose = require('mongoose');
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 
 const UserSchema = mongoose.Schema(
   {
@@ -16,26 +19,44 @@ const UserSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'profile',
     },
+    passwordResetToken: String,
+    passwordResetTokenExpires: Date,
   },
   { timestamps: true }
 );
 
 UserSchema.methods.generateAuthToken = async function () {
-  const user = this;
   const payload = {
     user: {
-      id: user.id,
+      id: this.id.toString(),
     },
   };
-  return jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: 360000,
+  return await jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: 3600,
   });
 };
 
-UserSchema.statics.userExist = async (email) => {
-  const user = await UserModel.findOne({ email });
-  if (!user) throw new Error('User with that email does not exist.');
-  return true;
+UserSchema.methods.createPasswordResetToken = async function () {
+  const resetToken = crypto.randomBytes(32).toString('hex');
+
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+
+  console.log({ resetToken }, this.passwordResetToken);
+
+  this.passwordResetTokenExpires = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
 };
 
-export const UserModel = mongoose.model('user', UserSchema);
+UserSchema.statics.userExist = async (email) => {
+  const user = await User.findOne({ email });
+  if (!user) return false;
+  return user;
+};
+
+const User = mongoose.model('user', UserSchema);
+
+module.exports = User;
