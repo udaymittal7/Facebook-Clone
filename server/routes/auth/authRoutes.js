@@ -1,6 +1,5 @@
 // Packages
 const express = require('express');
-const brcypt = require('bcryptjs');
 const crypto = require('crypto');
 
 // Databases
@@ -8,6 +7,7 @@ const User = require('../../database/Users/User');
 
 // utils
 const Email = require('../../utils/email');
+const auth = require('../../utils/auth');
 
 // initializing express router
 const router = express.Router();
@@ -23,14 +23,11 @@ router.post('/register', async (req, res) => {
         message: 'User with that email already exists',
       });
     }
-    // Generate new password
-    const salt = await brcypt.genSalt(10);
-    const hashedPassword = await brcypt.hash(password, salt);
 
     // Create user
     user = new User({
-      email: email,
-      password: hashedPassword,
+      email,
+      password,
     });
 
     // Save user
@@ -38,10 +35,9 @@ router.post('/register', async (req, res) => {
 
     const token = await user.generateAuthToken();
 
-    console.log(token);
-
     return res.json({ token, user });
   } catch (err) {
+    console.log(err);
     res.status(500).json({
       message: err.message,
     });
@@ -58,7 +54,7 @@ router.post('/login', async (req, res) => {
         message: 'User not found',
       });
 
-    const isMatch = await brcypt.compare(password, user.password);
+    const isMatch = await user.correctPassword(password, user.password);
 
     if (!isMatch) {
       return res.status(400).json({
@@ -117,14 +113,12 @@ router.patch('/forgotPassword', async (req, res) => {
 });
 
 // reset password
-router.post('/resetPassword/:token', async (req, res) => {
+router.patch('/resetPassword/:token', async (req, res) => {
   // get user based on token
   const hashedToken = crypto
     .createHash('sha256')
     .update(req.params.token)
     .digest('hex');
-
-  console.log(hashedToken);
 
   const user = await User.findOne({
     passwordResetToken: hashedToken,
@@ -144,6 +138,37 @@ router.post('/resetPassword/:token', async (req, res) => {
   const token = await user.generateAuthToken();
 
   res.status(200).json({ token, user });
+});
+
+// update password
+router.patch('/updatePassword', auth, async (req, res) => {
+  const user = await User.findById(req.user.id);
+
+  if (!(await user.correctPassword(req.body.currentPassword, user.password))) {
+    return res.status(401).json({ message: 'Your current password is wrong' });
+  }
+
+  user.password = req.body.newPassword;
+
+  await user.save();
+
+  const token = await user.generateAuthToken();
+
+  res.status(200).json({ token, user });
+});
+
+// Get logged in user
+router.get('/', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select(
+      '-password -createdAt -updatedAt '
+    );
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({
+      message: 'Server error',
+    });
+  }
 });
 
 module.exports = router;
