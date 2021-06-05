@@ -141,7 +141,7 @@ router.patch('/resetPassword/:token', async (req, res) => {
 });
 
 // update password
-router.patch('/updatePassword', auth, async (req, res) => {
+router.patch('/updateMyPassword', auth, async (req, res) => {
   const user = await User.findById(req.user.id);
 
   if (!(await user.correctPassword(req.body.currentPassword, user.password))) {

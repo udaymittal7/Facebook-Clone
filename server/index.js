@@ -1,13 +1,17 @@
+// packages
 const express = require('express');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-// const userRoute = require('./routes/userRoutes');
+// routes
 const authRoute = require('./routes/auth/authRoutes');
-// const postRoute = require('./routes/postRoutes');
+const userRoute = require('./routes/user/userRoutes');
+
+// database connection
 const connectDB = require('./db');
 
+// intializing express
 const app = express();
 
 dotenv.config();
@@ -26,6 +30,7 @@ app.use(helmet());
 
 // routes
 app.use('/api/auth', authRoute);
+app.use('/api/user', userRoute);
 
 app.listen(PORT, () => {
   console.log(`Server running at ${PORT}`);
