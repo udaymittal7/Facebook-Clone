@@ -1,18 +1,16 @@
 const nodemailer = require('nodemailer');
 
 module.exports = class Email {
-  constructor(user, url) {
+  constructor(user) {
     (this.to = user.email),
       (this.name = user.username),
-      (this.url = url),
       (this.from = 'Facebook');
   }
 
   newTransport() {
-    // using mailtrap for testing
     return nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
+      service: 'gmail',
+      host: 'smtp.gmail.com',
       auth: {
         user: process.env.EMAIL_USERNAME,
         pass: process.env.EMAIL_PASSWORD,
@@ -43,7 +41,7 @@ module.exports = class Email {
   //For sending welcome email anytime a new user sign up
   async sendWelcome() {
     // Relevant subject is added here
-    await send('Welcome', 'Welcome to Facebook!');
+    await this.send('Welcome', 'Welcome to Facebook!');
   }
 
   // password reset

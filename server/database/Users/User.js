@@ -8,24 +8,24 @@ const UserSchema = mongoose.Schema(
   {
     firstName: {
       type: String,
-      require: [true, 'Please enter your username'],
+      required: [true, 'Please enter your username'],
       min: 3,
       max: 20,
     },
     lastName: {
       type: String,
-      require: [true, 'Please enter your username'],
+      required: [true, 'Please enter your username'],
       min: 3,
       max: 20,
     },
     email: {
       type: String,
-      require: [true, 'Please enter your name'],
+      required: [true, 'Please enter your name'],
       unique: true,
     },
     password: {
       type: String,
-      require: [true, 'Please enter your password'],
+      required: [true, 'Please enter your password'],
       min: 8,
     },
     dob: {

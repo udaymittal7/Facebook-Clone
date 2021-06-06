@@ -14,7 +14,7 @@ const router = express.Router();
 
 // Register
 router.post('/register', async (req, res) => {
-  const { password, email } = req.body;
+  const { password, email, firstName, lastName, dob } = req.body;
 
   try {
     let user = await User.userExist(email);
@@ -28,10 +28,15 @@ router.post('/register', async (req, res) => {
     user = new User({
       email,
       password,
+      firstName,
+      lastName,
+      dob,
     });
 
     // Save user
     await user.save();
+
+    await new Email(user).sendWelcome();
 
     const token = await user.generateAuthToken();
 
