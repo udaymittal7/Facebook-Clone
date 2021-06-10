@@ -7,7 +7,9 @@ const User = require('../../database/Users/User');
 
 // utils
 const Email = require('../../utils/email');
-const auth = require('../../utils/auth');
+
+// middlewares
+const auth = require('../../middleware/auth');
 
 // initializing express router
 const router = express.Router();
