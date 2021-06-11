@@ -8,6 +8,12 @@ const User = require('../../database/Users/User');
 // utils
 const Email = require('../../utils/email');
 
+// validator
+const {
+  loginValidator,
+  registerValidator,
+} = require('../../validator/validator');
+
 // middlewares
 const auth = require('../../middleware/auth');
 
@@ -16,6 +22,14 @@ const router = express.Router();
 
 // Register
 router.post('/register', async (req, res) => {
+  const { error } = registerValidator(req.body);
+
+  if (error) {
+    return res
+      .status(400)
+      .json({ message: 'Validation Error', error: error.details[0].message });
+  }
+
   const { password, email, firstName, lastName, dob } = req.body;
 
   try {
@@ -53,6 +67,14 @@ router.post('/register', async (req, res) => {
 
 // Login
 router.post('/login', async (req, res) => {
+  const { error } = loginValidator(req.body);
+
+  if (error) {
+    return res
+      .status(400)
+      .json({ message: 'Validation Error', error: error.details[0].message });
+  }
+
   const { email, password } = req.body;
   try {
     const user = await User.userExist(email);

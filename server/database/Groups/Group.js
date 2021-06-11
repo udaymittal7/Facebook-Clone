@@ -24,7 +24,7 @@ const groupSchema = new mongoose.Schema({
   group_admin_id: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'profile',
+    ref: 'user',
   },
   members: {
     type: [
@@ -52,7 +52,7 @@ const groupSchema = new mongoose.Schema({
         _id: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: 'profile',
+          ref: 'user',
         },
         name: {
           type: String,
