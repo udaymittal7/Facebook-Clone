@@ -67,10 +67,8 @@ const UserSchema = mongoose.Schema(
     },
     friends: [
       {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'user',
-        },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
       },
     ],
     relationship: {
@@ -130,6 +128,32 @@ const UserSchema = mongoose.Schema(
         type: String,
       },
     ],
+    sentRequests: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User',
+          required: true,
+        },
+        date: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
+    receivedRequests: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User',
+          required: true,
+        },
+        date: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
     passwordResetToken: String,
     passwordResetTokenExpires: Date,
   },
@@ -159,7 +183,7 @@ UserSchema.methods.generateAuthToken = async function () {
     },
   };
   return await jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: 3600,
+    expiresIn: 36000,
   });
 };
 
@@ -178,8 +202,11 @@ UserSchema.methods.createPasswordResetToken = async function () {
   return resetToken;
 };
 
-UserSchema.statics.userExist = async (email) => {
-  const user = await User.findOne({ email });
+UserSchema.statics.userExist = async (type) => {
+  const { email, id } = type;
+  let user;
+  if (email) user = await User.findOne({ email });
+  else if (id) user = await User.findById(id);
   if (!user) return false;
   return user;
 };

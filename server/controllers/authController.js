@@ -22,7 +22,7 @@ exports.registerUser = async (req, res) => {
   const { password, email, firstName, lastName, dob } = req.body;
 
   try {
-    let user = await User.userExist(email);
+    let user = await User.userExist({ email });
     if (user) {
       return res.status(400).json({
         message: 'User with that email already exists',
@@ -65,7 +65,7 @@ exports.loginUser = async (req, res) => {
 
   const { email, password } = req.body;
   try {
-    const user = await User.userExist(email);
+    const user = await User.userExist({ email });
     if (!user)
       return res.status(400).json({
         message: 'User not found',
@@ -91,8 +91,10 @@ exports.loginUser = async (req, res) => {
 };
 
 exports.forgotPassword = async (req, res) => {
+  const email = req.body.email;
+
   // Get user
-  const user = await User.userExist(req.body.email);
+  const user = await User.userExist({ email });
 
   if (!user)
     return res.status(400).json({

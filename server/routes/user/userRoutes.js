@@ -19,4 +19,24 @@ router.patch('updateUser/:id', auth, userController.updateUser);
 // delete user
 router.delete('/deleteUser/:id', auth, userController.deleteUser);
 
+// send friend request
+router.patch('/sendFriendRequest/:id', auth, userController.sendFriendRequest);
+
+// decline friend request
+router.patch(
+  '/declineFriendRequest/:id',
+  auth,
+  userController.declineFriendRequest
+);
+
+// accept friend request
+router.patch(
+  '/acceptFriendRequest/:id',
+  auth,
+  userController.acceptFriendRequest
+);
+
+// remove friend
+router.patch('/removeFriend/:id', auth, userController.removeFriend);
+
 module.exports = router;
