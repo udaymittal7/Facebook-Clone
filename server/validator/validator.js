@@ -7,7 +7,7 @@ exports.registerValidator = (user) => {
     lastName: Joi.string().required(),
     email: Joi.string().required().email(),
     password: Joi.string().required().min(8),
-    dob: Joi.date(),
+    dob: Joi.date().required(),
   });
   return schema.validate(user);
 };
