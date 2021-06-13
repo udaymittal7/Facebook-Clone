@@ -20,3 +20,10 @@ exports.loginValidator = (user) => {
   });
   return schema.validate(user);
 };
+
+exports.postValidator = (post) => {
+  const schema = Joi.object({
+    desc: Joi.string().min(3),
+  });
+  return schema.validate(post);
+};

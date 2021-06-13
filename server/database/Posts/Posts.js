@@ -5,6 +5,7 @@ const PostSchema = mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'user',
+      required: [true, 'User is required'],
     },
     desc: {
       type: String,
@@ -14,6 +15,7 @@ const PostSchema = mongoose.Schema(
       feelings: {
         type: String,
         trim: true,
+        default: '',
       },
       with: [
         {
@@ -24,14 +26,20 @@ const PostSchema = mongoose.Schema(
       at: {
         type: String,
         trim: true,
+        default: '',
       },
-      date: String,
+      date: {
+        type: String,
+        default: '',
+      },
     },
     image: {
       type: String,
+      default: '',
     },
     video: {
       type: String,
+      default: '',
     },
     privacy: {
       type: String,
@@ -41,65 +49,28 @@ const PostSchema = mongoose.Schema(
     belongsTo: {
       type: String,
       enum: ['page', 'group', 'user'],
+      default: 'user',
     },
-    reactions: [
+    likes: [
       {
-        like: [
-          {
-            user: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: 'user',
-            },
-          },
-        ],
-        love: [
-          {
-            user: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: 'user',
-            },
-          },
-        ],
-        haha: [
-          {
-            user: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: 'user',
-            },
-          },
-        ],
-        care: [
-          {
-            user: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: 'user',
-            },
-          },
-        ],
-        wow: [
-          {
-            user: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: 'user',
-            },
-          },
-        ],
-        sad: [
-          {
-            user: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: 'user',
-            },
-          },
-        ],
-        angry: [
-          {
-            user: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: 'user',
-            },
-          },
-        ],
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'user',
+        },
+      },
+    ],
+    love: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'user',
+        },
+      },
+    ],
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'comment',
       },
     ],
   },

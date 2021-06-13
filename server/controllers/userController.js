@@ -1,6 +1,20 @@
 // Databases
 const User = require('../database/Users/User');
 
+// helper function
+const checkIfSentRequest = (user, id) => {
+  return user.sentRequests.find((req) => req.user.toString() === id);
+};
+
+const checkIfReceivedRequest = (user, id) => {
+  return user.receivedRequests.find((req) => req.user.toString() === id);
+};
+
+const checkIfFriends = (user, id) => {
+  return user.friends.find((req) => req.user.toString() === id);
+};
+
+// update user
 exports.updateUser = async (req, res) => {
   if (req.user.id === req.params.id) {
     const userFields = req.body;
@@ -29,6 +43,7 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+// delete user
 exports.deleteUser = async (req, res) => {
   if (req.user.id === req.params.id) {
     try {
@@ -46,6 +61,7 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
+// send friend request
 exports.sendFriendRequest = async (req, res) => {
   const friendId = req.params.id;
 
@@ -63,30 +79,20 @@ exports.sendFriendRequest = async (req, res) => {
     }
 
     // Check if currentUser doesn't already have a pending request from receivingUser
-    if (
-      currentUser.receivedRequests.find(
-        (req) => req.user.toString() === friendId
-      )
-    ) {
+    if (checkIfReceivedRequest(currentUser, friendId)) {
       return res
         .status(422)
         .json({ message: 'You already have a pending request from this user' });
     }
 
     // Check if requestingUser doesn't already have pending request from currentUser
-    if (
-      currentUser.sentRequests.find((req) => req.user.toString() === friendId)
-    )
+    if (checkIfSentRequest(currentUser, friendId))
       return res
         .status(422)
         .json({ message: 'You already have sent a request to this user' });
 
     // Check if users aren't already friends
-    const isFriends = currentUser.friends.find(
-      (friend) => friend.toString() === friendId
-    );
-
-    if (isFriends) {
+    if (checkIfFriends(currentUser, friendId)) {
       res.status(422).json({ message: 'Already friends with this user' });
     }
 
@@ -121,6 +127,7 @@ exports.sendFriendRequest = async (req, res) => {
   }
 };
 
+// decline friend request
 exports.declineFriendRequest = async (req, res) => {
   const friendId = req.params.id;
 
@@ -139,10 +146,8 @@ exports.declineFriendRequest = async (req, res) => {
 
     // checking if currentUser has a friend request from friend
     if (
-      !currentUser.receivedRequests.find(
-        (req) => req.user.toString() === friendId
-      ) &&
-      !friend.sentRequests.find((req) => req.user.toString() === req.user.id)
+      !checkIfReceivedRequest(currentUser, friendId) &&
+      !checkIfSentRequest(friend, req.user.id)
     ) {
       return res
         .status(400)
@@ -178,6 +183,7 @@ exports.declineFriendRequest = async (req, res) => {
   }
 };
 
+// accept friend request
 exports.acceptFriendRequest = async (req, res) => {
   const friendId = req.params.id;
 
@@ -196,10 +202,8 @@ exports.acceptFriendRequest = async (req, res) => {
 
     // checking if currentUser has a friend request from friend
     if (
-      !currentUser.receivedRequests.find(
-        (req) => req.user.toString() === friendId
-      ) &&
-      !friend.sentRequests.find((req) => req.user.toString() === req.user.id)
+      !checkIfReceivedRequest(currentUser, friendId) &&
+      !checkIfSentRequest(friend, req.user.id)
     ) {
       return res
         .status(400)

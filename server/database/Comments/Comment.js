@@ -12,7 +12,7 @@ const commentSchema = new mongoose.Schema(
       required: true,
       minlength: 5,
     },
-    post_id: {
+    postId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'post',
@@ -30,7 +30,6 @@ const commentSchema = new mongoose.Schema(
           ref: 'user',
           required: true,
         },
-        edited: String,
         content: String,
         likes: [
           {
