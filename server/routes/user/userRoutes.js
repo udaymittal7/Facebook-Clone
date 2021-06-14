@@ -13,6 +13,15 @@ const auth = require('../../middleware/auth');
 // initializing express router
 const router = express.Router();
 
+// get all users
+router.get('/', auth, userController.getAllUsers);
+
+// get user friends
+router.get('/friends', auth, userController.getFriends);
+
+// get a user
+router.get('/:id', auth, userController.getUser);
+
 // update user
 router.patch('updateUser/:id', auth, userController.updateUser);
 

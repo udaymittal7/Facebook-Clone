@@ -1,6 +1,54 @@
 // Databases
 const Post = require('../database/Posts/Posts');
+const User = require('../database/Users/User');
 const Comment = require('../database/Comments/Comment');
+
+// get timeline posts
+exports.getTimelinePosts = async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.user.id);
+
+    const userPosts = await Post.find({ user: req.user.id });
+    const friendPosts = await Promise.all(
+      currentUser.friends.map(async (friend) => {
+        return await Post.find({ user: friend });
+      })
+    );
+
+    res.status(200).json(userPosts.concat(...friendPosts));
+  } catch (err) {
+    console.error(err);
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({
+        message: 'No Post with that ID',
+      });
+    }
+    return res.status(500).json({
+      message: 'Server Error',
+      err: err.message,
+    });
+  }
+};
+
+// get user posts
+exports.getUserPosts = async (req, res) => {
+  try {
+    const userPosts = await Post.find({ user: req.user.id });
+
+    res.status(200).json(userPosts);
+  } catch (err) {
+    console.error(err);
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({
+        message: 'No Post with that ID',
+      });
+    }
+    return res.status(500).json({
+      message: 'Server Error',
+      err: err.message,
+    });
+  }
+};
 
 // create new post
 exports.createNewPost = async (req, res) => {

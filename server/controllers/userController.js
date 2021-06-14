@@ -3,15 +3,52 @@ const User = require('../database/Users/User');
 
 // helper function
 const checkIfSentRequest = (user, id) => {
-  return user.sentRequests.find((req) => req.user.toString() === id);
+  return (
+    user.sentRequests.filter((req) => req.user.toString() === id).length > 0
+  );
 };
 
 const checkIfReceivedRequest = (user, id) => {
-  return user.receivedRequests.find((req) => req.user.toString() === id);
+  return (
+    user.receivedRequests.filter((req) => req.user.toString() === id).length > 0
+  );
 };
 
-const checkIfFriends = (user, id) => {
-  return user.friends.find((req) => req.user.toString() === id);
+// get all users
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+
+    return res.status(200).json(users);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: 'Server Error', err: err.message });
+  }
+};
+
+exports.getUser = async (req, res) => {
+  try {
+    const user = await User.userExist({ id: req.params.id });
+
+    if (!user) return res.status(404).json({ message: 'No user with that Id' });
+
+    return res.status(200).json(user);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: 'Server Error', err: err.message });
+  }
+};
+
+// get user friends
+exports.getFriends = async (req, res) => {
+  try {
+    const users = await User.findById(req.user.id).populate('friends');
+
+    return res.status(200).json(users.friends);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: 'Server Error', err: err.message });
+  }
 };
 
 // update user
@@ -92,8 +129,14 @@ exports.sendFriendRequest = async (req, res) => {
         .json({ message: 'You already have sent a request to this user' });
 
     // Check if users aren't already friends
-    if (checkIfFriends(currentUser, friendId)) {
-      res.status(422).json({ message: 'Already friends with this user' });
+    const checkFriend = currentUser.friends.filter(
+      (friend) => friend.toString() === friendId
+    );
+
+    if (checkFriend.length > 0) {
+      return res
+        .status(422)
+        .json({ message: 'Already friends with this user' });
     }
 
     // Continue if no errors

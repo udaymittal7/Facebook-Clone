@@ -8,6 +8,7 @@ const cors = require('cors');
 const authRoute = require('./routes/auth/authRoutes');
 const userRoute = require('./routes/user/userRoutes');
 const postRoute = require('./routes/post/postRoutes');
+const storyRoute = require('./routes/story/storyRoutes');
 
 // database connection
 const connectDB = require('./db');
@@ -33,6 +34,7 @@ app.use(helmet());
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
 app.use('/api/post', postRoute);
+app.use('/api/story', storyRoute);
 
 app.listen(PORT, () => {
   console.log(`Server running at ${PORT}`);

@@ -10,6 +10,12 @@ const auth = require('../../middleware/auth');
 // initializing express router
 const router = express.Router();
 
+// get user posts
+router.get('/', auth, postController.getUserPosts);
+
+// get timeline posts
+router.get('/timeline', auth, postController.getTimelinePosts);
+
 // create new post
 router.post('/create', auth, postController.createNewPost);
 
