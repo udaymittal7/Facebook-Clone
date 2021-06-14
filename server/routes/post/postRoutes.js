@@ -28,6 +28,26 @@ router.put('/:id/loveUnlove', auth, postController.loveUnlovePost);
 // add comment
 router.put('/:id/addComment', auth, postController.addComment);
 
+// edit comment
+router.put('/editComment/:commentId', auth, postController.editComment);
+
+// like or unlike comment
+router.put(
+  '/likeUnlikeComment/:commentId',
+  auth,
+  postController.likeUnlikeComment
+);
+
+//add reply to comment
+router.put('/addReply/:commentId', auth, postController.replyToComment);
+
+//delete reply to comment
+router.put(
+  '/:commentId/deleteReply/:replyId',
+  auth,
+  postController.deleteReplyToComment
+);
+
 // delete comment
 router.put('/:id/deleteComment/:commentId', auth, postController.deleteComment);
 
