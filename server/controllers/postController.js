@@ -53,29 +53,22 @@ exports.getUserPosts = async (req, res) => {
 // create new post
 exports.createNewPost = async (req, res) => {
   const userId = req.user.id;
-  const {
-    desc,
-    privacy,
-    belongsTo,
-    feelings,
-    with: person,
-    at,
-    date,
-  } = req.body;
+
+  const postData = req.body;
 
   try {
     const newPost = new Post({
       user: userId,
-      desc,
+      desc: postData.desc,
       image: req.file || '',
       video: req.file || '  ',
-      privacy,
-      belongsTo,
+      privacy: postData.privacy,
+      belongsTo: postData.belongsTo,
       body: {
-        feelings: feelings || '',
-        with: person || [],
-        at: at || '',
-        date: date || '',
+        feelings: postData.feelings || '',
+        with: postData.person || [],
+        at: postData.at || '',
+        date: postData.date || '',
       },
     });
 
