@@ -1,0 +1,31 @@
+.sidebarRow {
+  display: flex;
+  align-items: center;
+  padding: 9px 6px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.sidebarRow > .MuiAvatar-root {
+  width: 35px;
+  height: 35px;
+}
+
+.sidebarRow:hover {
+  background-color: #dfe3ee;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.sidebarRow > .sidebarRow__image {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.sidebarRow > span {
+  font-size: 15px;
+  color: black;
+  font-weight: 500;
+  margin-left: 15px;
+}

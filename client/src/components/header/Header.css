@@ -1,0 +1,131 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  background-color: white;
+  z-index: 1000;
+  top: 0;
+  box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.5);
+  height: 7.5vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  flex: 2;
+}
+
+.header__left > img {
+  margin-left: 15px;
+  height: 40px;
+}
+
+.header__input {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  background-color: #eff2f5;
+  padding: 10px;
+  border-radius: 33px;
+  width: 18vw;
+  height: 40px;
+}
+
+.header__input > input {
+  border: none;
+  outline-width: 0;
+  background-color: transparent;
+}
+
+.header__input__text {
+  padding-left: 7px;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.header__middle {
+  display: flex;
+  flex: 5;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__options {
+  display: flex;
+  align-items: center;
+  padding: 10px 40px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.header__options:hover {
+  background-color: #eff2f5;
+  border-radius: 10px;
+  align-items: center;
+  border-bottom: none;
+}
+
+.header__options > .MuiSvgIcon-root {
+  color: rgb(107, 103, 103);
+  font-size: 30px;
+}
+
+.header__options--active > .MuiSvgIcon-root {
+  color: #2e81f4;
+}
+
+.header__options--active {
+  border-bottom: 4px solid #2e81f4;
+}
+
+.header__options--active:hover {
+  border-bottom: 4px solid #2e81f4;
+  background-color: white;
+  border-radius: 0;
+  align-items: center;
+}
+
+.header__right {
+  display: flex;
+  flex: 1.8;
+  margin: 5px 0;
+}
+
+.header__info {
+  display: flex;
+  align-items: center;
+  margin: 7px 0 10px 40px;
+  padding: 5px;
+}
+
+.header__info:hover {
+  border-radius: 20px;
+  background-color: #dfe3ee;
+}
+
+.header__info > .MuiAvatar-root {
+  color: #f7f7f7;
+  width: 29px;
+  height: 29px;
+}
+
+.header__info__text {
+  padding-left: 7px;
+  font-weight: 500;
+}
+
+.header__right__icons {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  margin: 2px 5px;
+  cursor: pointer;
+  background-color: #dfe3ee;
+  border-radius: 50%;
+}
+
+.header__right__icons:hover {
+  background-color: #b0b3b8;
+}

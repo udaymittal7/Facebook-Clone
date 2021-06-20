@@ -1,0 +1,32 @@
+.widget-friend {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.widget-profile-image-container {
+  margin-right: 10px;
+  position: relative;
+}
+
+.widget-profile-image {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.widget-online {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: limegreen;
+  position: absolute;
+  bottom: 2px;
+  right: -1px;
+  border: 2px solid white;
+}
+
+.widget-username {
+  font-weight: 500;
+}

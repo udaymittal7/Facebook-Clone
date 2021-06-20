@@ -1,0 +1,59 @@
+.widget {
+  margin-top: 10px;
+  flex: 0.9;
+  height: 100vh;
+}
+
+.widget-header {
+  padding: 0 15px;
+  display: flex;
+}
+
+.widget-heading {
+  display: flex;
+  color: gray;
+  font-weight: 600;
+  font-size: 19px;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 2;
+}
+
+.widget-header-icon {
+  flex: 0.5;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.widget-header-icon > .MuiSvgIcon-root {
+  color: rgb(73, 70, 70);
+}
+
+.widget-friendlist {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  padding: 0 20px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.widget:hover {
+  overflow-y: scroll;
+}
+
+.widget::-webkit-scrollbar {
+  width: 8px;
+}
+
+.widget::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: inset 7px 10px 12px #f0f0f0;
+}
+
+.widget::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 5px;
+}

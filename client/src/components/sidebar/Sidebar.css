@@ -1,0 +1,46 @@
+.sidebar {
+  margin-left: 10px;
+  width: 30vw;
+  flex: 0.9;
+}
+
+.sidebar__top {
+  margin-top: 15px;
+  height: 100vh;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.sidebar__top:hover {
+  overflow-y: scroll;
+}
+
+.sidebar__top::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar__top::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: inset 7px 10px 12px #f0f0f0;
+}
+
+.sidebar__top::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 5px;
+}
+
+.sidebarRow__line {
+  margin: 10px 10px 10px 0;
+  width: 20vw;
+  color: #bdbdbd;
+}
+
+.sidebarRow__shortcutheading {
+  padding: 10px;
+  color: gray;
+  font-size: 18px;
+  font-weight: 500;
+}

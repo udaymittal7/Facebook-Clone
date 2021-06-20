@@ -154,6 +154,30 @@ const UserSchema = mongoose.Schema(
         },
       },
     ],
+    notifications: [
+      {
+        post: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'post',
+        },
+        friend: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'user',
+        },
+        content: {
+          type: String,
+          required: true,
+        },
+        date: {
+          type: Date,
+          default: Date.now,
+        },
+        seen: {
+          type: Boolean,
+          default: false,
+        },
+      },
+    ],
     passwordResetToken: String,
     passwordResetTokenExpires: Date,
   },

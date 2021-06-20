@@ -1,0 +1,8 @@
+.home {
+  background-color: #f1f2f5;
+}
+
+.home-body {
+  display: flex;
+  justify-content: space-between;
+}
