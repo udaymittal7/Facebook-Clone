@@ -89,6 +89,10 @@
   cursor: pointer;
 }
 
+.signIn-forgot:hover {
+  text-decoration: underline;
+}
+
 .signIn-register-button {
   width: 60%;
   align-self: center;
@@ -110,4 +114,38 @@
 
 .signIn-register-button:disabled {
   cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .signIn-wrapper {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .signIn-right {
+    justify-content: center;
+  }
+
+  .signIn-box {
+    height: 100%;
+    width: 92%;
+  }
+
+  .signIn-input {
+    margin: 10px 0 10px 0;
+  }
+
+  .signIn-button {
+    margin: 10px 0;
+  }
+
+  .signIn-register-button {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .signIn-desc {
+    display: none;
+  }
 }

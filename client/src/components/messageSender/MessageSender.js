@@ -4,10 +4,8 @@ import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import React, { useState } from 'react';
 import './MessageSender.css';
-import { useStateValue } from '../../StateProvider';
 
 function MessageSender() {
-  const [{ user }, dispatch] = useStateValue();
   const [input, setInput] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const handleSubmit = (e) => {

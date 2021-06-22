@@ -15,10 +15,8 @@ import AppsIcon from '@material-ui/icons/Apps';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ChatIcon from '@material-ui/icons/Chat';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { useStateValue } from '../../StateProvider';
 
 function Header() {
-  const [{ user }, dispatch] = useStateValue();
   return (
     <div className='header'>
       <div className='header__left'>

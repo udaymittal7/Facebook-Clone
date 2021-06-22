@@ -8,6 +8,7 @@ exports.registerValidator = (user) => {
     email: Joi.string().required().email(),
     password: Joi.string().required().min(8),
     dob: Joi.date().required(),
+    gender: Joi.string().required(),
   });
   return schema.validate(user);
 };

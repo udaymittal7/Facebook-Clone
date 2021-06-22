@@ -14,12 +14,13 @@ exports.registerUser = async (req, res) => {
   const { error } = registerValidator(req.body);
 
   if (error) {
+    console.log(error.details);
     return res
       .status(400)
       .json({ message: 'Validation Error', error: error.details[0].message });
   }
 
-  const { password, email, firstName, lastName, dob } = req.body;
+  const { password, email, firstName, lastName, dob, gender } = req.body;
 
   try {
     let user = await User.userExist({ email });
@@ -36,6 +37,7 @@ exports.registerUser = async (req, res) => {
       firstName,
       lastName,
       dob,
+      gender,
     });
 
     // Save user
