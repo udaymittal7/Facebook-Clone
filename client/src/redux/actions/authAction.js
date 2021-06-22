@@ -7,6 +7,7 @@ import {
   EMAIL_FAIL,
   RESET_PASSWORD_FAIL,
   CLEAR_ERROR,
+  RESET_PASSWORD_SUCCESS,
 } from './types';
 
 export const signup = (user) => {
@@ -63,7 +64,7 @@ export const sendResetPasswordEmail = (email) => {
           'Content-Type': 'application/json',
         },
       };
-      const res = await axios.post('/api/users/forgotPassword', email, config);
+      const res = await axios.patch('/api/auth/forgotPassword', email, config);
       dispatch({
         type: EMAIL_SUCCESS,
         payload: res.data.message,
@@ -87,18 +88,14 @@ export const resetPassword = (data) => {
         },
       };
       console.log(data);
-      const token = data.token;
-      const res = await axios.patch(
-        `/api/reset/${token}`,
-        data.password,
-        config
-      );
+      const { url, password } = data;
+      const res = await axios.patch(`/api/auth${url}`, { password }, config);
       dispatch({
-        type: EMAIL_SUCCESS,
-        payload: res.data.message,
+        type: RESET_PASSWORD_SUCCESS,
+        payload: res.data.user,
       });
     } catch (err) {
-      console.log(err.response.data.message);
+      console.log(err);
       dispatch({
         type: RESET_PASSWORD_FAIL,
         payload: err.response.data.message,

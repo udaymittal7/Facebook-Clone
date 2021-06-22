@@ -7,6 +7,8 @@ import store from './redux/store';
 import Home from './pages/home/Home';
 import SignIn from './pages/signin/SignIn';
 import SignUp from './pages/signup/SignUp';
+import ForgotPassword from './pages/forgotPassword/ForgotPassword';
+import ResetPassword from './pages/resetPassword/ResetPassword';
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
           <Route exact path='/' component={Home} />
           <Route exact path='/signin' component={SignIn} />
           <Route exact path='/signup' component={SignUp} />
+          <Route exact path='/forgotPassword' component={ForgotPassword} />
+          <Route exact path='/resetPassword/:token' component={ResetPassword} />
         </Switch>
       </Router>
     </Provider>

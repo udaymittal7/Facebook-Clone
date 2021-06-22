@@ -5,6 +5,7 @@ import {
   EMAIL_FAIL,
   RESET_PASSWORD_FAIL,
   CLEAR_ERROR,
+  RESET_PASSWORD_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -18,6 +19,7 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_USER:
     case SIGNUP_USER:
+    case RESET_PASSWORD_SUCCESS:
       return {
         ...state,
         user: action.payload,

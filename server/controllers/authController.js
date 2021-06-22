@@ -111,12 +111,12 @@ exports.forgotPassword = async (req, res) => {
   //send it to user's email
   const resetURL = `${req.protocol}://${req.get(
     'host'
-  )}/api/users/resetPassword/${resetToken}`;
+  )}/resetPassword/${resetToken}`;
 
   try {
     const message = `Forgot your password? Submit a request with your new password at: ${resetURL}.`;
     await new Email(user, resetURL).sendPasswordReset(message);
-
+    console.log('Email Sent');
     res.status(200).json({
       message: 'Token sent to your email!',
     });
@@ -156,7 +156,6 @@ exports.resetPassword = async (req, res) => {
 
   // log the user in, send JWT
   const token = await user.generateAuthToken();
-
   res.status(200).json({ token, user });
 };
 
