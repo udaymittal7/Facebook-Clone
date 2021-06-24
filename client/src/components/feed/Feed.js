@@ -1,43 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import StoryReel from '../storyReel/StoryReel';
 import './Feed.css';
-import MessageSender from '../messageSender/MessageSender';
+import Share from '../share/Share';
 import Post from '../post/Post';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPostsTimeline } from '../../redux/actions/postAction';
 
-function Feed() {
-  const [posts, setPosts] = useState([]);
+const Feed = () => {
+  const { posts } = useSelector((state) => state.post);
+  // const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  //   useEffect(() => {
-  //     db.collection('posts')
-  //       .orderBy('timestamp', 'desc')
-  //       .onSnapshot((snapShot) =>
-  //         setPosts(
-  //           snapShot.docs.map((doc) => ({
-  //             id: doc.id,
-  //             data: doc.data(),
-  //           }))
-  //         )
-  //       );
-  //   }, []);
+  useEffect(() => {
+    dispatch(getPostsTimeline());
+    console.log(posts);
+  }, []);
 
   return (
     <div className='feed'>
       <StoryReel />
 
-      <MessageSender />
+      <Share />
 
       {posts.map((post) => (
         <Post
-          key={post.id}
-          profilePic={post.data.profilePic}
-          message={post.data.message}
-          timestamp={post.data.timestamp}
-          username={post.data.username}
-          image={post.data.image}
+          key={post._id}
+          profilePicture={post.user.profilePicture}
+          desc={post.desc}
+          timestamp={post.updatedAt}
+          username={post.user.firstName + ' ' + post.user.lastName}
+          media={post.media}
         />
       ))}
     </div>
   );
-}
+};
 
 export default Feed;

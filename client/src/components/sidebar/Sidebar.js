@@ -1,12 +1,18 @@
 import React from 'react';
 import './Sidebar.css';
 import SidebarRow from '../sidebarRow/SidebarRow';
+import { useSelector } from 'react-redux';
 
-function Sidebar() {
+const Sidebar = () => {
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <div className='sidebar'>
       <div className='sidebar__top'>
-        <SidebarRow src='{user.photoURL}' title='Uday Mittal' />
+        <SidebarRow
+          src={`${user.photoURL}`}
+          title={`${user.firstName + ' ' + user.lastName}`}
+        />
         <SidebarRow
           url='https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/kOxV5aCYUAE.png'
           title='COVID-19 information Centre'
@@ -107,7 +113,7 @@ function Sidebar() {
           url='https://static.xx.fbcdn.net/rsrc.php/v3/yC/r/bo0Zt72NIra.png'
           title='Weather'
         />
-        <div className='sidebarRow__shortcutheading'>
+        {/* <div className='sidebarRow__shortcutheading'>
           <hr className='sidebarRow__line' />
           <span>Your shortcuts</span>
         </div>
@@ -134,10 +140,10 @@ function Sidebar() {
         <SidebarRow
           url='https://scontent.fpat2-1.fna.fbcdn.net/v/t1.0-9/75317333_108050823979255_17253192865677312_n.jpg?_nc_cat=105&ccb=2&_nc_sid=09cbfe&_nc_ohc=BMyeUf9IEdcAX_WViQb&_nc_ht=scontent.fpat2-1.fna&oh=012f1f9d3afcaefd93bd1d0b805e8d25&oe=5FE4FE9D'
           title='REACT'
-        />
+        /> */}
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;

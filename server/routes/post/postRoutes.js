@@ -1,5 +1,6 @@
 // Packages
 const express = require('express');
+const upload = require('../../utils/multer');
 
 // controller
 const postController = require('../../controllers/postController');
@@ -11,13 +12,18 @@ const auth = require('../../middleware/auth');
 const router = express.Router();
 
 // get user posts
-router.get('/', auth, postController.getUserPosts);
+router.get('/profile/:id', auth, postController.getUserPosts);
 
 // get timeline posts
 router.get('/timeline', auth, postController.getTimelinePosts);
 
 // create new post
-router.post('/create', auth, postController.createNewPost);
+router.post(
+  '/create',
+  auth,
+  upload.single('media'),
+  postController.createNewPost
+);
 
 // update post
 router.patch('/update/:id', auth, postController.updatePost);

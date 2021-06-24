@@ -3,15 +3,18 @@ const Post = require('../database/Posts/Posts');
 const User = require('../database/Users/User');
 const Comment = require('../database/Comments/Comment');
 
+// utils
+const { cloudinary } = require('../utils/cloudinary');
+
 // get timeline posts
 exports.getTimelinePosts = async (req, res) => {
   try {
     const currentUser = await User.findById(req.user.id);
 
-    const userPosts = await Post.find({ user: req.user.id });
+    const userPosts = await Post.find({ user: req.user.id }).populate('user');
     const friendPosts = await Promise.all(
       currentUser.friends.map(async (friend) => {
-        return await Post.find({ user: friend });
+        return await Post.find({ user: friend }).populate('user');
       })
     );
 
@@ -33,7 +36,7 @@ exports.getTimelinePosts = async (req, res) => {
 // get user posts
 exports.getUserPosts = async (req, res) => {
   try {
-    const userPosts = await Post.find({ user: req.user.id });
+    const userPosts = await Post.find({ user: req.params.id });
 
     res.status(200).json(userPosts);
   } catch (err) {
@@ -56,12 +59,22 @@ exports.createNewPost = async (req, res) => {
 
   const postData = req.body;
 
+  let image, video, media;
+
+  if (postData.file) {
+    media = await cloudinary.uploader.upload(req.file.path);
+
+    if (media.secure_url.includes('png' || 'jpeg' || 'jpg'))
+      image = media.secure_url;
+    else video = media.secure_url;
+  }
+
   try {
     const newPost = new Post({
       user: userId,
       desc: postData.desc,
-      image: req.file || '',
-      video: req.file || '  ',
+      image,
+      video,
       privacy: postData.privacy,
       belongsTo: postData.belongsTo,
       body: {

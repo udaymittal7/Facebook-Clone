@@ -6,6 +6,7 @@ import {
   RESET_PASSWORD_FAIL,
   CLEAR_ERROR,
   RESET_PASSWORD_SUCCESS,
+  USER_LOADED,
 } from '../actions/types';
 
 const initialState = {
@@ -20,11 +21,19 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_USER:
     case SIGNUP_USER:
     case RESET_PASSWORD_SUCCESS:
+      localStorage.setItem("token", action.payload.token);
+      return {
+        ...state,
+        user: action.payload.user,
+        isAuthenticated: true,
+        loading: false,
+      };
+    case USER_LOADED:
       return {
         ...state,
         user: action.payload,
         isAuthenticated: true,
-        loading: false,
+        loading: false
       };
     case AUTH_FAIL:
     case EMAIL_FAIL:

@@ -26,7 +26,7 @@ connectDB();
 // middlewares
 app.use(express.json({ extended: false }));
 
-app.use(cors());
+// app.use(cors());
 
 app.use(helmet());
 

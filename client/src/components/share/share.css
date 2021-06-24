@@ -1,0 +1,99 @@
+.share {
+  display: flex;
+  margin-top: 30px;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+  width: 39vw;
+  margin-right: 15px;
+}
+
+.share__top {
+  display: flex;
+  border-bottom: 1px solid #eff2f5;
+  padding: 15px;
+}
+
+.share__top {
+  flex: 1;
+  display: flex;
+}
+
+.share__top > input {
+  outline-width: 0;
+  border: none;
+  padding: 5px 20px;
+  margin: 0 10px;
+  border-radius: 999px;
+  background-color: #eff2f5;
+}
+
+.share__imageContainer {
+  padding: 0 20px 10px 20px;
+  position: relative;
+}
+
+.share__image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.share__cancelImage {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  color: red;
+}
+
+.share__input {
+  flex: 1;
+  font-size: 17px;
+  border: none;
+  padding-left: 10px;
+}
+
+.share__input:focus {
+  outline: none;
+}
+
+.share__button {
+  background-color: #2e81f4;
+  border: none;
+  width: 50px;
+  border-radius: 5px;
+  margin: 0 5px;
+  font-weight: 500;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.share__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 10px;
+}
+
+.share__options {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: gray;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.share__options > div {
+  font-size: medium;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.share__options:hover {
+  background-color: #eff2f5;
+  border-radius: 10px;
+}

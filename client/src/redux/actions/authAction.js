@@ -1,4 +1,5 @@
 import axios from 'axios';
+import setAuthToken from '../../utils/setAuthToken';
 import {
   SIGNUP_USER,
   LOGIN_USER,
@@ -8,7 +9,12 @@ import {
   RESET_PASSWORD_FAIL,
   CLEAR_ERROR,
   RESET_PASSWORD_SUCCESS,
+  USER_LOADED,
 } from './types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 export const signup = (user) => {
   return async (dispatch) => {
@@ -21,7 +27,7 @@ export const signup = (user) => {
       const res = await axios.post('/api/auth/register', user, config);
       dispatch({
         type: SIGNUP_USER,
-        payload: res.data.user,
+        payload: res.data,
       });
     } catch (err) {
       console.log(err.response.data.message);
@@ -44,13 +50,13 @@ export const login = (user) => {
       const res = await axios.post('/api/auth/login', user, config);
       dispatch({
         type: LOGIN_USER,
-        payload: res.data.user,
+        payload: res.data,
       });
     } catch (err) {
-      console.log(err.response.data.message);
+      console.log(err);
       dispatch({
         type: AUTH_FAIL,
-        payload: err.response.data.message,
+        payload: err,
       });
     }
   };
@@ -92,7 +98,7 @@ export const resetPassword = (data) => {
       const res = await axios.patch(`/api/auth${url}`, { password }, config);
       dispatch({
         type: RESET_PASSWORD_SUCCESS,
-        payload: res.data.user,
+        payload: res.data,
       });
     } catch (err) {
       console.log(err);
@@ -100,6 +106,25 @@ export const resetPassword = (data) => {
         type: RESET_PASSWORD_FAIL,
         payload: err.response.data.message,
       });
+    }
+  };
+};
+
+export const loadUser = () => {
+  return async (dispatch) => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+
+    try {
+      const res = await axios.get('/api/auth');
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: AUTH_FAIL });
     }
   };
 };
