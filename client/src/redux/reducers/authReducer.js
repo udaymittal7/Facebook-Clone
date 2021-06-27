@@ -7,11 +7,13 @@ import {
   CLEAR_ERROR,
   RESET_PASSWORD_SUCCESS,
   USER_LOADED,
+  LOAD_PROFILE_USER,
 } from '../actions/types';
 
 const initialState = {
   user: null,
-  isAuthenticated: false,
+  profileUser: null,
+  isAuthenticated: null,
   loading: true,
   error: null,
 };
@@ -21,7 +23,7 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_USER:
     case SIGNUP_USER:
     case RESET_PASSWORD_SUCCESS:
-      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem('token', action.payload.token);
       return {
         ...state,
         user: action.payload.user,
@@ -33,7 +35,13 @@ const authReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         isAuthenticated: true,
-        loading: false
+        loading: false,
+      };
+    case LOAD_PROFILE_USER:
+      return {
+        ...state,
+        profileUser: action.payload,
+        loading: false,
       };
     case AUTH_FAIL:
     case EMAIL_FAIL:

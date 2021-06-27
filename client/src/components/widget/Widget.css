@@ -1,7 +1,10 @@
 .widget {
   padding-top: 10px;
   flex: 0.9;
-  height: 100vh;
+  height: calc(100vh - 7.5vh);
+  position: sticky;
+  top: 7.5vh;
+  overflow: hidden;
 }
 
 .widget-header {

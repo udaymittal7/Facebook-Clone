@@ -10,6 +10,7 @@ import {
   CLEAR_ERROR,
   RESET_PASSWORD_SUCCESS,
   USER_LOADED,
+  LOAD_PROFILE_USER,
 } from './types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -120,6 +121,21 @@ export const loadUser = () => {
       const res = await axios.get('/api/auth');
       dispatch({
         type: USER_LOADED,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: AUTH_FAIL });
+    }
+  };
+};
+
+export const loadProfileUser = (id) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get(`/api/user/${id}`);
+      dispatch({
+        type: LOAD_PROFILE_USER,
         payload: res.data,
       });
     } catch (err) {

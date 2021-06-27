@@ -11,28 +11,6 @@ const PostSchema = mongoose.Schema(
       type: String,
       max: 500,
     },
-    body: {
-      feelings: {
-        type: String,
-        trim: true,
-        default: '',
-      },
-      with: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'user',
-        },
-      ],
-      at: {
-        type: String,
-        trim: true,
-        default: '',
-      },
-      date: {
-        type: String,
-        default: '',
-      },
-    },
     image: {
       type: String,
       default: '',

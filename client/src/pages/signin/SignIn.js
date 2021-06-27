@@ -69,7 +69,9 @@ const SignIn = (props) => {
             <button className='signIn-button' type='submit'>
               Sign In
             </button>
-            <span className='signIn-forgot'>Forgotten Password?</span>
+            <Link to='/forgotPassword' className='signIn-forgot'>
+              <span className='signIn-forgot'>Forgotten Password?</span>
+            </Link>
             <Link
               to='/signup'
               className='signIn-register-button'

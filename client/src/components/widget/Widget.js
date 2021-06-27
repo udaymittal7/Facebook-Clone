@@ -4,7 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Friend from '../friend/Friend';
 import './Widget.css';
 
-function Widget() {
+function Widget({ friends }) {
   return (
     <div className='widget'>
       <div className='widget-header'>
@@ -17,20 +17,13 @@ function Widget() {
         </div>
       </div>
       <ul className='widget-friendlist'>
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
+        {friends?.length > 0 &&
+          friends.map((friend) => (
+            <Friend
+              name={friend.firstName + ' ' + friend.lastName}
+              profilePicture={friend.profilePicture}
+            />
+          ))}
       </ul>
     </div>
   );

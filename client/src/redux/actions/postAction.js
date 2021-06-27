@@ -74,8 +74,7 @@ export const addLike = (postId) => {
       dispatch({
         type: POST_ERROR,
         payload: {
-          message: err.response.statusText,
-          status: err.response.status,
+          message: err,
         },
       });
     }
@@ -86,7 +85,7 @@ export const addLike = (postId) => {
 export const deletePost = (id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`/api/post/${id}`);
+      await axios.delete(`/api/post/delete/${id}`);
       dispatch({ type: DELETE_POST, payload: id });
       toast.success('Post Deleted', {
         position: toast.POSITION.TOP_CENTER,
@@ -97,8 +96,7 @@ export const deletePost = (id) => {
       dispatch({
         type: POST_ERROR,
         payload: {
-          message: err.response.statusText,
-          status: err.response.status,
+          message: err,
         },
       });
       toast.error('Unable to Delete Post. Please try again', {
@@ -153,7 +151,7 @@ export const addComment = (postId, formData) => {
         },
       };
       const res = await axios.put(
-        `/api/post/comment/${postId}`,
+        `/api/post/${postId}/addComment`,
         formData,
         config
       );

@@ -1,0 +1,116 @@
+.timelineHeader-container {
+  padding: 0 176px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.timelineHeader-coverImage-container {
+  position: relative;
+  height: 380px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.timelineHeader-coverImage {
+  object-fit: cover;
+  width: 80%;
+  height: 90%;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.timelineHeader-profileImage-container {
+  position: absolute;
+  bottom: 12px;
+}
+
+.timelineHeader-profileImage {
+  object-fit: cover;
+  border: 5px white solid;
+  width: 180px;
+  height: 180px;
+  border-radius: 9999px;
+}
+
+.timelineHeader-username {
+  text-align: center;
+  margin-top: -10px;
+  font-size: 35px;
+  font-weight: 700;
+  color: black;
+}
+
+.timelineHeader-border {
+  border: grey 1px solid;
+  opacity: 0.2;
+  margin-top: 6px;
+}
+
+.timelineHeader-optionsBar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 32px;
+  margin: 0 32px;
+}
+
+.timelineHeader-options {
+  display: flex;
+  align-items: center;
+}
+
+.timelineHeader-option {
+  padding: 20px 16px;
+  color: grey;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.timelineHeader-option-detail {
+  font-size: small;
+  margin-left: 4px;
+  font-weight: normal;
+}
+
+.timelineHeader-option-active {
+  color: #2e81f4;
+  border-bottom: 4px #2e81f4 solid;
+}
+
+.timelineHeader-option-dropdown {
+  display: flex;
+  align-items: center;
+  padding: 20px 16px;
+  color: grey;
+  cursor: pointer;
+}
+
+.timelineHeader-option-dropdown-icon {
+  margin-left: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.timelineHeader-icons {
+  display: flex;
+  align-items: center;
+  margin-left: 2px;
+}
+
+.timelineHeader-icon {
+  margin: 0 5px;
+  width: 150px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.timelineHeader-icon > .MuiSvgIcon-root {
+  margin-right: 5px;
+}

@@ -2,6 +2,10 @@
   margin-left: 10px;
   width: 29vw;
   flex: 0.9;
+  height: calc(100vh - 7.5vh);
+  position: sticky;
+  top: 7.5vh;
+  overflow: hidden;
 }
 
 .sidebar__top {
@@ -10,7 +14,6 @@
   width: 100%;
   border-bottom: 1px solid lightgray;
   margin-bottom: 10px;
-  overflow: hidden;
 }
 
 .sidebar__top:hover {

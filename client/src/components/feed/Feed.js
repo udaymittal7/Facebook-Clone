@@ -8,20 +8,17 @@ import { getPostsTimeline } from '../../redux/actions/postAction';
 
 const Feed = () => {
   const { posts } = useSelector((state) => state.post);
-  // const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPostsTimeline());
-    console.log(posts);
-  }, []);
+    if (user) dispatch(getPostsTimeline());
+  }, [user]);
 
   return (
     <div className='feed'>
       <StoryReel />
-
       <Share />
-
       {posts.map((post) => (
         <Post
           key={post._id}
@@ -30,6 +27,10 @@ const Feed = () => {
           timestamp={post.updatedAt}
           username={post.user.firstName + ' ' + post.user.lastName}
           media={post.media}
+          likes={post.likes}
+          comments={post.comments}
+          postId={post._id}
+          userId={post.user._id}
         />
       ))}
     </div>

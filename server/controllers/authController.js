@@ -177,9 +177,9 @@ exports.updatePassword = async (req, res) => {
 
 exports.loggedInUser = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select(
-      '-password -createdAt -updatedAt '
-    );
+    const user = await User.findById(req.user.id)
+      .select('-password -createdAt -updatedAt ')
+      .populate('friends');
     res.json(user);
   } catch (err) {
     console.log(err);

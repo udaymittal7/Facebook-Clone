@@ -1,0 +1,31 @@
+.comment__friend {
+  display: flex;
+}
+
+.comment___friend__avatar {
+  margin: 10px 5px 5px -5px;
+}
+
+.comment___friend__avatar > .MuiAvatar-root {
+  height: 30px;
+  width: 30px;
+}
+
+.comment__friend__info {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #eff2f5;
+  padding: 5px 10px;
+  margin: 10px 10px 10px 5px;
+}
+
+.comment__friend__username {
+  display: flex;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.comment__friend__content {
+  font-size: 15px;
+}

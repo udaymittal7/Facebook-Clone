@@ -1,7 +1,6 @@
 .post {
   width: 39vw;
-  margin-top: 15px;
-  margin-right: 15px;
+  margin: 15px 15px 15px 0;
   background-color: white;
   border-radius: 15px;
   box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
@@ -12,6 +11,7 @@
 }
 
 .post__avatar {
+  display: flex;
   margin-right: 10px;
 }
 
@@ -19,16 +19,26 @@
   display: flex;
   position: relative;
   align-items: center;
-  padding: 15px;
+  justify-content: space-between;
+  padding: 15px 15px 0 15px;
 }
 
-.post__topInfo > h3 {
+.post__topInfo {
+  display: flex;
+}
+
+.post__topInfoUser > h3 {
   font-size: medium;
 }
 
-.post__topInfo > p {
+.post__topInfoUser > p {
   font-size: small;
   color: gray;
+}
+
+.post__topInfoDelete {
+  cursor: pointer;
+  background-color: white;
 }
 
 .post__bottom {
@@ -41,15 +51,43 @@
   margin-bottom: 5px;
 }
 
+.post__details {
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: medium;
+  color: gray;
+  font-weight: 500;
+}
+
+.post__detail {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px 5px 5px 0;
+  flex: 1;
+  cursor: pointer;
+}
+
+.post__detail > .MuiSvgIcon-root {
+  color: white;
+  padding: 5px;
+  border-radius: 50%;
+  background: #2e81f4;
+  margin-right: 5px;
+}
+
 .post__options {
   padding-top: 10px;
   border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
   display: flex;
   justify-content: space-evenly;
   font-size: medium;
   color: gray;
   cursor: pointer;
-  padding: 15px;
+  padding: 5px;
+  font-weight: 500;
 }
 
 .post__option {
@@ -67,4 +105,39 @@
 .post__option:hover {
   background-color: #eff2f5;
   border-radius: 10px;
+}
+
+.blue {
+  color: #2e81f4;
+}
+
+.icon-blue > .MuiSvgIcon-root {
+  color: #2e81f4;
+}
+
+.post__comments__user {
+  display: flex;
+}
+
+.post__comment__avatar {
+  margin: 10px 5px 5px -5px;
+}
+
+.post__comment__avatar > .MuiAvatar-root {
+  height: 30px;
+  width: 30px;
+}
+
+.post__comment__input {
+  outline-width: 0;
+  border: none;
+  padding: 8px 20px;
+  margin: 10px 10px 10px 5px;
+  border-radius: 999px;
+  background-color: #eff2f5;
+  width: 100%;
+}
+
+.post__comments__friends {
+  display: flex;
 }

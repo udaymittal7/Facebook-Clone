@@ -1,0 +1,23 @@
+.profile-container {
+  padding: 16px 208px 224px 208px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+  z-index: 0;
+  background: #f1f2f5;
+  justify-content: center;
+}
+
+.profile-left {
+  grid-column: span 5 / span 5;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  margin-top: 4px;
+}
+
+.profile-right {
+  grid-row-start: 1;
+  grid-column: span 7 / span 7;
+  grid-column-start: 6;
+  margin-top: -25px;
+}
