@@ -28,7 +28,7 @@ exports.getAllUsers = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.userExist({ id: req.params.id });
+    const user = await User.findById(req.params.id).populate('friends');
 
     if (!user) return res.status(404).json({ message: 'No user with that Id' });
 
@@ -55,7 +55,15 @@ exports.getFriends = async (req, res) => {
 exports.updateUser = async (req, res) => {
   if (req.user.id === req.params.id) {
     const userFields = req.body;
-
+    if (req.file) {
+      req.body.profile
+        ? (userFields.profilePicture = req.file.path
+            .replace(/\\/g, '/')
+            .substr(14))
+        : (userFields.coverPicture = req.file.path
+            .replace(/\\/g, '/')
+            .substr(14));
+    }
     try {
       const user = await User.findByIdAndUpdate(
         req.params.id,

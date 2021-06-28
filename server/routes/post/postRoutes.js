@@ -1,12 +1,12 @@
 // Packages
 const express = require('express');
-const upload = require('../../utils/multer');
 
 // controller
 const postController = require('../../controllers/postController');
 
 // middlewares
 const auth = require('../../middleware/auth');
+const upload = require('../../utils/multer');
 
 // initializing express router
 const router = express.Router();

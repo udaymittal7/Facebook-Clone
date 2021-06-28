@@ -9,6 +9,7 @@ const userController = require('../../controllers/userController');
 
 // middlewares
 const auth = require('../../middleware/auth');
+const upload = require('../../utils/multer');
 
 // initializing express router
 const router = express.Router();
@@ -23,7 +24,12 @@ router.get('/friends', auth, userController.getFriends);
 router.get('/:id', auth, userController.getUser);
 
 // update user
-router.patch('updateUser/:id', auth, userController.updateUser);
+router.patch(
+  '/updateUser/:id',
+  auth,
+  upload.single('media'),
+  userController.updateUser
+);
 
 // delete user
 router.delete('/deleteUser/:id', auth, userController.deleteUser);

@@ -3,9 +3,6 @@ const Post = require('../database/Posts/Posts');
 const User = require('../database/Users/User');
 const Comment = require('../database/Comments/Comment');
 
-// utils
-const { cloudinary } = require('../utils/cloudinary');
-
 // get timeline posts
 exports.getTimelinePosts = async (req, res) => {
   try {
@@ -80,22 +77,11 @@ exports.createNewPost = async (req, res) => {
 
   const postData = req.body;
 
-  let image, video, media;
-
-  if (postData.file === true) {
-    media = await cloudinary.uploader.upload(req.file.path);
-
-    if (media.secure_url.includes('png' || 'jpeg' || 'jpg'))
-      image = media.secure_url;
-    else video = media.secure_url;
-  }
-
   try {
     const newPost = new Post({
       user: userId,
       desc: postData.desc,
-      image,
-      video,
+      image: req.file.path.replace(/\\/g, '/').substr(14),
       privacy: postData.privacy,
       belongsTo: postData.belongsTo,
     });
