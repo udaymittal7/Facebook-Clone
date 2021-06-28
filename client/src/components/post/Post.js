@@ -25,6 +25,7 @@ const Post = ({
   desc,
   likes,
   comments,
+  profilePostId,
 }) => {
   const [commentClick, setCommentClick] = useState(false);
 
@@ -34,6 +35,8 @@ const Post = ({
   const commentText = useRef();
 
   const content = commentText.current && commentText.current.value;
+
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const likeHandler = (postId) => {
     dispatch(addLike(postId));
@@ -64,7 +67,7 @@ const Post = ({
         {user && user._id === userId && (
           <div
             className='post__topInfoDelete'
-            onClick={() => deleteHandler(postId)}
+            onClick={() => deleteHandler(profilePostId || postId)}
           >
             <CancelIcon />
           </div>
@@ -74,7 +77,7 @@ const Post = ({
         <p>{desc}</p>
         {media && (
           <div className='post__image'>
-            <img src={media} alt='' />
+            <img src={PF + media} alt='' />
           </div>
         )}
         <div className='post__details'>
@@ -95,7 +98,7 @@ const Post = ({
             className={`post__option ${
               likeChecker.length > 0 ? 'icon-blue' : ''
             }`}
-            onClick={() => likeHandler(postId)}
+            onClick={() => likeHandler(profilePostId || postId)}
           >
             <ThumbUpAltOutlinedIcon />
             <p className={likeChecker.length > 0 ? 'blue' : ''}>Like</p>
@@ -116,7 +119,7 @@ const Post = ({
           className='post__comments__user'
           onSubmit={(e) => {
             e.preventDefault();
-            commentSubmit(postId, { content });
+            commentSubmit(profilePostId || postId, { content });
           }}
         >
           <Link to={`/profile/${userId}`}>
@@ -138,7 +141,7 @@ const Post = ({
                   <Comment
                     key={comment._id}
                     comment={comment}
-                    postId={postId}
+                    postId={profilePostId || postId}
                   />
                 </div>
               </>

@@ -49,3 +49,8 @@
   height: 100px;
   width: 100px;
 }
+
+.profileFriends-name {
+  font-size: 14px;
+  font-weight: 500;
+}

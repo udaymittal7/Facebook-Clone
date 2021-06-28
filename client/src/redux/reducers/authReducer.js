@@ -8,6 +8,8 @@ import {
   RESET_PASSWORD_SUCCESS,
   USER_LOADED,
   LOAD_PROFILE_USER,
+  USER_ERROR,
+  UPDATE_PICTURE,
 } from '../actions/types';
 
 const initialState = {
@@ -37,6 +39,11 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: true,
         loading: false,
       };
+    case UPDATE_PICTURE:
+      return {
+        ...state,
+        user: action.payload,
+      };
     case LOAD_PROFILE_USER:
       return {
         ...state,
@@ -46,6 +53,7 @@ const authReducer = (state = initialState, action) => {
     case AUTH_FAIL:
     case EMAIL_FAIL:
     case RESET_PASSWORD_FAIL:
+    case USER_ERROR:
       return {
         ...state,
         isAuthenticated: false,

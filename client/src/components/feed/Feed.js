@@ -26,7 +26,7 @@ const Feed = () => {
           desc={post?.desc}
           timestamp={post?.updatedAt}
           username={post?.user?.firstName + ' ' + post?.user?.lastName}
-          media={post?.media}
+          media={post?.image}
           likes={post?.likes}
           comments={post?.comments}
           postId={post?._id}

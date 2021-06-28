@@ -116,7 +116,6 @@ export const createPost = (formData) => {
           'Content-Type': 'multipart/form-data',
         },
       };
-      console.log('postAction');
       const res = await axios.post('/api/post/create', formData, config);
 
       dispatch({ type: ADD_POST, payload: res.data });

@@ -12,8 +12,8 @@ const Sidebar = () => {
       <div className='sidebar__top'>
         <Link to={`/profile/${user?._id}`} style={{ textDecoration: 'none' }}>
           <SidebarRow
-            src={`${user.photoURL}`}
-            title={`${user.firstName + ' ' + user.lastName}`}
+            src={`${user?.profilePicture}`}
+            title={`${user?.firstName + ' ' + user?.lastName}`}
           />
         </Link>
         <SidebarRow
@@ -67,10 +67,6 @@ const Sidebar = () => {
         <SidebarRow
           url='https://static.xx.fbcdn.net/rsrc.php/v3/yt/r/PObY9OA5lvJ.png'
           title='Games'
-        />
-        <SidebarRow
-          url='https://static.xx.fbcdn.net/rsrc.php/v3/yb/r/5EU1wNhLmR6.png'
-          title='Gaming video'
         />
         <SidebarRow
           url='https://static.xx.fbcdn.net/rsrc.php/v3/yo/r/DO-SN-shaZL.png'

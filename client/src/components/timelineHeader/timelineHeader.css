@@ -132,3 +132,75 @@
 .timelineHeader-icon > .MuiSvgIcon-root {
   margin-right: 5px;
 }
+
+.timelineHeader-coverImage-edit {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  top: 75%;
+  right: 13%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  background: white;
+  border-radius: 8px;
+  padding: 10px 10px 10px 5px;
+}
+
+.timelineHeader-coverImage-edit:hover {
+  background: #f1f1f1;
+}
+
+.timelineHeader-coverImage-edit > .MuiSvgIcon-root {
+  height: 18px;
+  width: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timelineHeader-coverImage-edit-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.timelineHeader-coverImage-cancel,
+.timelineHeader-coverImage-edit-logo,
+.timelineHeader-coverImage-save {
+  margin: 6px;
+}
+
+.timelineHeader-profileImage-edit {
+  display: inline-block;
+  position: absolute;
+  top: 70%;
+  right: 6%;
+  border-radius: 50%;
+  width: 37px;
+  height: 37px;
+  cursor: pointer;
+  background: #f1f1f1;
+  text-align: center;
+}
+
+.timelineHeader-profileImage-edit-logo {
+  margin: 7px;
+}
+
+.timelineHeader-profileImage-edit:hover {
+  opacity: 0.9;
+}
+
+.timelineHeader-profileImage-edit > .MuiSvgIcon-root {
+  height: 18px;
+  width: 18px;
+}
+
+.timelineHeader-profileImage-save,
+.timelineHeader-profileImage-edit-cancel {
+  margin-top: 8px;
+}

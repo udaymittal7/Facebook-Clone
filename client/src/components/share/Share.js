@@ -23,11 +23,8 @@ const Share = () => {
 
     if (media) {
       newPost.append('media', media);
-      newPost.append('file', true);
     }
     newPost.append('desc', desc.current.value);
-
-    console.log('working');
     dispatch(createPost(newPost));
     desc.current.value = '';
     setMedia(null);
@@ -66,13 +63,13 @@ const Share = () => {
           <VideocamIcon style={{ color: 'red' }} />
           <div>Live video</div>
         </div>
-        <label className='share__options'>
+        <label className='share__options' htmlFor={media}>
           <PhotoLibraryIcon style={{ color: 'green' }} />
           <div>Photo/Video</div>
           <input
             type='file'
             name='media'
-            accept='.png, .jpeg, .jpg, .mp4, .mov, .mkv'
+            accept='.png, .jpeg, .jpg'
             onChange={(e) => setMedia(e.target.files[0])}
             style={{ display: 'none' }}
           />

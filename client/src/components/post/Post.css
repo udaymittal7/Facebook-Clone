@@ -6,10 +6,6 @@
   box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
 }
 
-.post__image > img {
-  width: 100%;
-}
-
 .post__avatar {
   display: flex;
   margin-right: 10px;
@@ -49,6 +45,14 @@
 
 .post__bottom > p {
   margin-bottom: 5px;
+}
+
+.post__image {
+  margin: 0 -25px;
+}
+
+.post__image > img {
+  width: 100%;
 }
 
 .post__details {

@@ -21,3 +21,44 @@
   grid-column-start: 6;
   margin-top: -25px;
 }
+
+.profile-right-posts {
+  margin-top: 30px;
+  padding: 16px;
+  background: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  width: 94%;
+}
+
+.profile-right-posts-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-right-posts-header {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+.profile-right-posts-button {
+  color: black;
+  padding: 5px 8px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-right-posts-button:focus {
+  outline: none;
+}
+
+.profile-right-posts-detail {
+  margin-left: 2px;
+  font-weight: 500;
+}

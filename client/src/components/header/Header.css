@@ -102,6 +102,7 @@
   align-items: center;
   margin: 7px 0 10px 40px;
   padding: 5px;
+  cursor: pointer;
 }
 
 .header__info:hover {

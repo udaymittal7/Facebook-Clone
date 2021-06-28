@@ -11,6 +11,8 @@ import {
   RESET_PASSWORD_SUCCESS,
   USER_LOADED,
   LOAD_PROFILE_USER,
+  UPDATE_PICTURE,
+  USER_ERROR,
 } from './types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -141,6 +143,30 @@ export const loadProfileUser = (id) => {
     } catch (err) {
       console.log(err);
       dispatch({ type: AUTH_FAIL });
+    }
+  };
+};
+
+export const updatePicture = (id, formData) => {
+  return async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+      const res = await axios.patch(
+        `/api/user/updateUser/${id}`,
+        formData,
+        config
+      );
+      dispatch({
+        type: UPDATE_PICTURE,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: USER_ERROR });
     }
   };
 };
