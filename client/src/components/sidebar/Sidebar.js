@@ -2,6 +2,7 @@ import React from 'react';
 import './Sidebar.css';
 import SidebarRow from '../sidebarRow/SidebarRow';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const { user } = useSelector((state) => state.auth);
@@ -9,10 +10,12 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className='sidebar__top'>
-        <SidebarRow
-          src={`${user.photoURL}`}
-          title={`${user.firstName + ' ' + user.lastName}`}
-        />
+        <Link to={`/profile/${user?._id}`} style={{ textDecoration: 'none' }}>
+          <SidebarRow
+            src={`${user.photoURL}`}
+            title={`${user.firstName + ' ' + user.lastName}`}
+          />
+        </Link>
         <SidebarRow
           url='https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/kOxV5aCYUAE.png'
           title='COVID-19 information Centre'

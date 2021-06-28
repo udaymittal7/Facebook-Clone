@@ -15,15 +15,23 @@ import AppsIcon from '@material-ui/icons/Apps';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ChatIcon from '@material-ui/icons/Chat';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import { useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 
-function Header() {
+const Header = (props) => {
+  const { user } = useSelector((state) => state.auth);
+  const history = useHistory();
+
   return (
     <div className='header'>
       <div className='header__left'>
-        <img
-          src='https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512'
-          alt='FB-Logo'
-        />
+        <Link to='/'>
+          <Avatar
+            src='https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512'
+            alt='FB-Logo'
+            className='header__logo'
+          />
+        </Link>
         <div className='header__input'>
           <SearchIcon color='disabled' />
           <input
@@ -51,10 +59,12 @@ function Header() {
         </div>
       </div>
       <div className='header__right'>
-        <div className='header__info'>
-          <Avatar /*{user.photoURL}*/ />
-          {/* <h4>{user.displayName}</h4> */}
-          <span className='header__info__text'>User</span>
+        <div
+          className='header__info'
+          onClick={() => history.push(`/profile/${user?._id}`)}
+        >
+          <Avatar src={user?.profilePicture} />
+          <span className='header__info__text'>{user?.firstName}</span>
         </div>
         <div className='header__right__icons'>
           <AppsIcon />
@@ -71,6 +81,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;

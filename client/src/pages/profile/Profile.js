@@ -14,10 +14,9 @@ import { useParams } from 'react-router-dom';
 
 const Profile = () => {
   const { profilePosts } = useSelector((state) => state.post);
-  const { profileUser } = useSelector((state) => state.auth);
+  const { profileUser, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id);
 
   // const [profileImage, setProfileImage] = useState(null);
   // const [coverImage, setCoverImage] = useState(null);
@@ -27,6 +26,14 @@ const Profile = () => {
     dispatch(getPostsProfile(id));
   }, [id]);
 
+  const checkFriend = () => {
+    const userFriend = user.friends.filter((friend) => {
+      return friend._id === profileUser._id;
+    });
+
+    return userFriend.length > 0;
+  };
+
   return (
     <>
       <Header />
@@ -35,6 +42,8 @@ const Profile = () => {
         coverImage={profileUser?.coverPicture}
         username={profileUser?.firstName + ' ' + profileUser?.lastName}
         friends={profileUser?.friends.length}
+        myProfile={user?._id === profileUser?._id}
+        checkFriend={checkFriend}
       />
       <div className='profile-container'>
         <div className='profile-left'>
@@ -45,7 +54,7 @@ const Profile = () => {
             lives={profileUser?.lives}
           />
           <Photos posts={profilePosts} />
-          <ProfileFriends friends={profileUser.friends} />
+          <ProfileFriends friends={profileUser?.friends} />
         </div>
         <div className='profile-right'>
           <Share />

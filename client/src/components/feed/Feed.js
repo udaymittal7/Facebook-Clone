@@ -21,16 +21,16 @@ const Feed = () => {
       <Share />
       {posts.map((post) => (
         <Post
-          key={post._id}
-          profilePicture={post.user.profilePicture}
-          desc={post.desc}
-          timestamp={post.updatedAt}
-          username={post.user.firstName + ' ' + post.user.lastName}
-          media={post.media}
-          likes={post.likes}
-          comments={post.comments}
-          postId={post._id}
-          userId={post.user._id}
+          key={post?._id}
+          profilePicture={post?.user?.profilePicture}
+          desc={post?.desc}
+          timestamp={post?.updatedAt}
+          username={post?.user?.firstName + ' ' + post?.user?.lastName}
+          media={post?.media}
+          likes={post?.likes}
+          comments={post?.comments}
+          postId={post?._id}
+          userId={post?.user?._id}
         />
       ))}
     </div>

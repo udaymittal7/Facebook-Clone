@@ -17,6 +17,10 @@
   flex: 2;
 }
 
+.header__logo {
+  margin-left: 15px;
+}
+
 .header__left > img {
   margin-left: 15px;
   height: 40px;

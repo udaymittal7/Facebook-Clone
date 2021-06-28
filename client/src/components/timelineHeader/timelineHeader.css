@@ -60,10 +60,16 @@
 }
 
 .timelineHeader-option {
-  padding: 20px 16px;
+  padding: 15px 12px;
+  margin: 5px 4px;
   color: grey;
   font-weight: 500;
   cursor: pointer;
+}
+
+.timelineHeader-option:hover {
+  background: #eff2f5;
+  border-radius: 4px;
 }
 
 .timelineHeader-option-detail {
@@ -77,12 +83,24 @@
   border-bottom: 4px #2e81f4 solid;
 }
 
+.timelineHeader-option-active:hover {
+  background: inherit;
+  border-radius: 0;
+}
+
 .timelineHeader-option-dropdown {
   display: flex;
   align-items: center;
-  padding: 20px 16px;
+  padding: 15px 12px;
+  margin: 5px 4px;
   color: grey;
   cursor: pointer;
+  font-weight: 500;
+}
+
+.timelineHeader-option-dropdown:hover {
+  background: #eff2f5;
+  border-radius: 4px;
 }
 
 .timelineHeader-option-dropdown-icon {

@@ -3,9 +3,19 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import EditIcon from '@material-ui/icons/Edit';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import PersonIcon from '@material-ui/icons/Person';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import MessageIcon from '@material-ui/icons/Message';
 import './timelineHeader.css';
 
-const TimelineHeader = ({ profileImage, coverImage, username, friends }) => {
+const TimelineHeader = ({
+  profileImage,
+  coverImage,
+  username,
+  friends,
+  myProfile,
+  checkFriend,
+}) => {
   return (
     <div className='timelineHeader-container'>
       <div className='timelineHeader-coverImage-container'>
@@ -53,10 +63,14 @@ const TimelineHeader = ({ profileImage, coverImage, username, friends }) => {
             className='timelineHeader-icon'
             style={{ color: 'white', backgroundColor: '#2e81f4' }}
           >
-            <AddCircleOutlineIcon /> Add to Story
+            {(myProfile && <AddCircleOutlineIcon />) ||
+              (checkFriend ? <PersonIcon /> : <PersonAddIcon />)}
+            {(myProfile && 'Add to story') ||
+              (checkFriend ? 'Friends' : 'Add Friend')}
           </button>
           <button className='timelineHeader-icon'>
-            <EditIcon /> Edit Profile
+            {myProfile ? <EditIcon /> : <MessageIcon />}
+            {myProfile ? 'Edit Profile' : 'Message'}
           </button>
           <button className='timelineHeader-icon' style={{ width: 40 }}>
             <MoreHorizIcon />

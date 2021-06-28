@@ -1,5 +1,6 @@
 import { Avatar } from '@material-ui/core';
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Post.css';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
@@ -52,7 +53,9 @@ const Post = ({
     <div className='post'>
       <div className='post__top'>
         <div className='post__topInfo'>
-          <Avatar src={profilePicture} className='post__avatar' />
+          <Link to={`/profile/${userId}`}>
+            <Avatar src={profilePicture} className='post__avatar' />
+          </Link>
           <div className='post__topInfoUser'>
             <h3>{username}</h3>
             <p>{new Date(timestamp).getHours()} h</p>
@@ -116,7 +119,9 @@ const Post = ({
             commentSubmit(postId, { content });
           }}
         >
-          <Avatar src={profilePicture} className='post__comment__avatar' />
+          <Link to={`/profile/${userId}`}>
+            <Avatar src={profilePicture} className='post__comment__avatar' />
+          </Link>
           <input
             ref={commentText}
             type='text'
