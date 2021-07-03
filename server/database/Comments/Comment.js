@@ -10,7 +10,6 @@ const commentSchema = new mongoose.Schema(
     content: {
       type: String,
       required: true,
-      minlength: 5,
     },
     postId: {
       type: mongoose.Schema.Types.ObjectId,

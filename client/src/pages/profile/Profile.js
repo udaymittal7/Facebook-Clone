@@ -20,9 +20,10 @@ const Profile = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    document.title = `${profileUser?.firstName} ${profileUser?.lastName} | Facebook`;
     dispatch(loadProfileUser(id));
     dispatch(getPostsProfile(id));
-  }, [id]);
+  }, [id, profileUser]);
 
   const checkFriend = () => {
     const userFriend = user.friends.filter((friend) => {

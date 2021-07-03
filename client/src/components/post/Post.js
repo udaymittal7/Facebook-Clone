@@ -1,6 +1,6 @@
 import { Avatar } from '@material-ui/core';
 import React, { useRef, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Post.css';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
@@ -32,11 +32,7 @@ const Post = ({
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const commentText = useRef();
-
-  const profileUserId = useParams();
-
-  const content = commentText.current && commentText.current.value;
+  const [content, setContent] = useState({ content: '' });
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -49,7 +45,13 @@ const Post = ({
   };
 
   const commentSubmit = (postId) => {
-    dispatch(addComment(postId, { content }));
+    dispatch(addComment(postId, content));
+    setContent({ content: '' });
+    setCommentClick(true);
+  };
+
+  const onChange = (e) => {
+    setContent({ ...content, [e.target.name]: e.target.value });
   };
 
   const likeChecker = likes.filter((like) => like.user.toString() === user._id);
@@ -128,10 +130,11 @@ const Post = ({
             <Avatar src={profilePicture} className='post__comment__avatar' />
           </Link>
           <input
-            ref={commentText}
+            name='content'
             type='text'
             className='post__comment__input'
             placeholder='Write a comment...'
+            onChange={onChange}
           />
         </form>
         {commentClick &&
