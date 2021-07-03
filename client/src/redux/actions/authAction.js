@@ -13,6 +13,10 @@ import {
   LOAD_PROFILE_USER,
   UPDATE_PICTURE,
   USER_ERROR,
+  UPDATE_USER,
+  REMOVE_FRIEND,
+  SEND_FRIEND_REQUEST,
+  ACCEPT_FRIEND_REQUEST,
 } from './types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -163,6 +167,92 @@ export const updatePicture = (id, formData) => {
       dispatch({
         type: UPDATE_PICTURE,
         payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: USER_ERROR });
+    }
+  };
+};
+
+export const updateUser = (id, data) => {
+  return async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.patch(`/api/user/updateUser/${id}`, data, config);
+      dispatch({
+        type: UPDATE_USER,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: USER_ERROR });
+    }
+  };
+};
+
+export const removeUserFriend = (id) => {
+  return async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.patch(`/api/user/removeFriend/${id}`, config);
+      dispatch({
+        type: REMOVE_FRIEND,
+        payload: res.data.user,
+      });
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: USER_ERROR });
+    }
+  };
+};
+
+export const sendFriendRequest = (id) => {
+  return async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.patch(
+        `/api/user/sendFriendRequest/${id}`,
+        config
+      );
+      dispatch({
+        type: SEND_FRIEND_REQUEST,
+        payload: res.data.user,
+      });
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: USER_ERROR });
+    }
+  };
+};
+
+export const acceptFriendRequest = (id) => {
+  return async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.patch(
+        `/api/user/acceptFriendRequest/${id}`,
+        config
+      );
+      dispatch({
+        type: ACCEPT_FRIEND_REQUEST,
+        payload: res.data.user,
       });
     } catch (err) {
       console.log(err);

@@ -188,7 +188,7 @@
 }
 
 .timelineHeader-profileImage-edit-logo {
-  margin: 7px;
+  margin: 8px;
 }
 
 .timelineHeader-profileImage-edit:hover {
@@ -196,8 +196,8 @@
 }
 
 .timelineHeader-profileImage-edit > .MuiSvgIcon-root {
-  height: 18px;
-  width: 18px;
+  height: 22px;
+  width: 22px;
 }
 
 .timelineHeader-profileImage-save,

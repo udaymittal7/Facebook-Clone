@@ -5,6 +5,8 @@ import Friend from '../friend/Friend';
 import './Widget.css';
 
 function Widget({ friends }) {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
   return (
     <div className='widget'>
       <div className='widget-header'>
@@ -21,7 +23,7 @@ function Widget({ friends }) {
           friends.map((friend) => (
             <Friend
               name={friend.firstName + ' ' + friend.lastName}
-              profilePicture={friend.profilePicture}
+              profilePicture={PF + friend.profilePicture}
             />
           ))}
       </ul>

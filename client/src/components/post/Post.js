@@ -1,6 +1,6 @@
 import { Avatar } from '@material-ui/core';
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Post.css';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
@@ -33,6 +33,8 @@ const Post = ({
   const dispatch = useDispatch();
 
   const commentText = useRef();
+
+  const profileUserId = useParams();
 
   const content = commentText.current && commentText.current.value;
 

@@ -39,3 +39,159 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+.modal-container {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.modal-header {
+  display: flex;
+  border-bottom: lightgray 1px solid;
+  padding: 0 10px 15px 10px;
+  align-items: center;
+  font-size: 20px;
+}
+
+.modal-heading {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  flex: 20;
+  justify-content: center;
+}
+
+.modal-header-close > .MuiSvgIcon-root {
+  border-radius: 50%;
+  border: none;
+  color: lightgray;
+}
+
+.modal-header-close-icon {
+  cursor: pointer;
+}
+
+.modal-intro {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.modal-intro-heading {
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.modal-intro-description {
+  color: grey;
+  font-size: 16px;
+}
+
+.modal-row {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+}
+
+.modal-row-heading {
+  padding: 10px 0;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.modal-row-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-row-input {
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  font-size: 18px;
+  padding-left: 20px;
+  width: 100%;
+  margin: 0 10px 10px 0;
+}
+
+.modal-row-input:hover {
+  text-decoration: none;
+}
+
+.modal-row-input:focus {
+  outline: none;
+}
+
+.modal-row-item {
+  color: #2e81f4;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.modal-row-description {
+  margin-left: 10px;
+}
+
+.modal-row-description:hover {
+  text-decoration: underline;
+}
+
+.modal-submit {
+  position: sticky;
+  top: 70%;
+  display: flex;
+  padding: 20px 20px 5px 20px;
+  border-top: 1px solid lightgray;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.modal-submit-text {
+  flex: 3;
+  color: #2e81f4;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.modal-submit-text:hover {
+  text-decoration: underline;
+}
+
+.modal-submit-cancel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  background: lightgray;
+  border: none;
+  border-radius: 6px;
+  padding: 16px 10px 18px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.modal-submit-submit {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  background: #2e81f4;
+  border: none;
+  border-radius: 6px;
+  padding: 17px 35px 19px 35px;
+  margin: 0 5px;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: inherit;
+  font-size: 16px;
+}

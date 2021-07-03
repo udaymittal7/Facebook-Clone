@@ -81,7 +81,7 @@ exports.createNewPost = async (req, res) => {
     const newPost = new Post({
       user: userId,
       desc: postData.desc,
-      image: req.file.path.replace(/\\/g, '/').substr(14),
+      image: req.file ? req.file.path.replace(/\\/g, '/').substr(14) : '',
       privacy: postData.privacy,
       belongsTo: postData.belongsTo,
     });

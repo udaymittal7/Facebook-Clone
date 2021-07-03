@@ -24,12 +24,18 @@ const Photos = ({ posts, profilePicture, coverPicture }) => {
               )
           )}
         <img
-          src={profilePicture && PF + profilePicture}
+          src={
+            (profilePicture && PF + profilePicture) ||
+            'https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg'
+          }
           alt=''
           className='photos'
         />
         <img
-          src={coverPicture && PF + coverPicture}
+          src={
+            (coverPicture && PF + coverPicture) ||
+            'https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg'
+          }
           alt=''
           className='photos'
         />

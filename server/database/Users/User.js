@@ -75,28 +75,25 @@ const UserSchema = mongoose.Schema(
       type: String,
       enum: ['Single', 'Relationship', 'Complicated', 'Married'],
     },
-    education: [
-      {
-        university: {
-          type: String,
-        },
-        highSchool: {
-          type: String,
-        },
+    education: {
+      university: {
+        type: String,
       },
-    ],
-    work: [
-      {
-        title: {
-          type: String,
-          require: true,
-        },
-        company: {
-          type: String,
-          require: true,
-        },
+      highSchool: {
+        type: String,
       },
-    ],
+    },
+    work: {
+      title: {
+        type: String,
+        require: true,
+      },
+      company: {
+        type: String,
+        require: true,
+      },
+    },
+
     socialHandles: {
       facebook: String,
       instagram: String,

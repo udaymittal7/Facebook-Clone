@@ -12,8 +12,8 @@ const Feed = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user) dispatch(getPostsTimeline());
-  }, [user]);
+    dispatch(getPostsTimeline());
+  }, []);
 
   return (
     <div className='feed'>

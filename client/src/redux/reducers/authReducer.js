@@ -10,6 +10,10 @@ import {
   LOAD_PROFILE_USER,
   USER_ERROR,
   UPDATE_PICTURE,
+  UPDATE_USER,
+  REMOVE_FRIEND,
+  SEND_FRIEND_REQUEST,
+  ACCEPT_FRIEND_REQUEST,
 } from '../actions/types';
 
 const initialState = {
@@ -40,9 +44,17 @@ const authReducer = (state = initialState, action) => {
         loading: false,
       };
     case UPDATE_PICTURE:
+    case SEND_FRIEND_REQUEST:
+    case ACCEPT_FRIEND_REQUEST:
       return {
         ...state,
         user: action.payload,
+      };
+    case UPDATE_USER:
+    case REMOVE_FRIEND:
+      return {
+        ...state,
+        profileUser: action.payload,
       };
     case LOAD_PROFILE_USER:
       return {

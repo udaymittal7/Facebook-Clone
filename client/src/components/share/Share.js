@@ -7,7 +7,7 @@ import React, { useRef, useState } from 'react';
 import './share.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createPost } from '../../redux/actions/postAction';
+import { createPost, getPostsTimeline } from '../../redux/actions/postAction';
 
 const Share = () => {
   const [media, setMedia] = useState(null);
@@ -28,6 +28,8 @@ const Share = () => {
     dispatch(createPost(newPost));
     desc.current.value = '';
     setMedia(null);
+
+    dispatch(getPostsTimeline());
   };
 
   return (

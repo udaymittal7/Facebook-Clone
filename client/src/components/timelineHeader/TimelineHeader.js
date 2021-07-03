@@ -12,7 +12,13 @@ import CheckIcon from '@material-ui/icons/Check';
 import './timelineHeader.css';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { updatePicture } from '../../redux/actions/authAction';
+import {
+  acceptFriendRequest,
+  removeUserFriend,
+  sendFriendRequest,
+  updatePicture,
+} from '../../redux/actions/authAction';
+import { useParams } from 'react-router-dom';
 
 const TimelineHeader = ({
   profilePicture,
@@ -21,6 +27,8 @@ const TimelineHeader = ({
   friends,
   myProfile,
   checkFriend,
+  checkRequest,
+  checkPending,
 }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [profileImage, setProfileImage] = useState(null);
@@ -28,6 +36,8 @@ const TimelineHeader = ({
 
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  const profileUserId = useParams();
 
   const updateCoverImage = () => {
     const newPost = new FormData();
@@ -46,6 +56,21 @@ const TimelineHeader = ({
     newPost.append('profile', true);
     dispatch(updatePicture(user._id, newPost));
     setProfileImage(null);
+    window.location.reload();
+  };
+
+  const removeFriend = () => {
+    dispatch(removeUserFriend(profileUserId.id));
+    window.location.reload();
+  };
+
+  const sendRequest = () => {
+    dispatch(sendFriendRequest(profileUserId.id));
+    window.location.reload();
+  };
+
+  const acceptRequest = () => {
+    dispatch(acceptFriendRequest(profileUserId.id));
     window.location.reload();
   };
 
@@ -174,11 +199,24 @@ const TimelineHeader = ({
           <button
             className='timelineHeader-icon'
             style={{ color: 'white', backgroundColor: '#2e81f4' }}
+            onClick={
+              checkFriend
+                ? removeFriend
+                : checkRequest
+                ? acceptRequest
+                : sendRequest
+            }
           >
             {(myProfile && <AddCircleOutlineIcon />) ||
               (checkFriend ? <PersonIcon /> : <PersonAddIcon />)}
             {(myProfile && 'Add to story') ||
-              (checkFriend ? 'Friends' : 'Add Friend')}
+              (checkFriend
+                ? 'Friends'
+                : checkRequest
+                ? 'Accept Request'
+                : checkPending
+                ? 'Request Pending'
+                : 'Add Friend')}
           </button>
           <button className='timelineHeader-icon'>
             {myProfile ? <EditIcon /> : <MessageIcon />}

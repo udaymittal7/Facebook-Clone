@@ -26,9 +26,24 @@ const Profile = () => {
 
   const checkFriend = () => {
     const userFriend = user.friends.filter((friend) => {
-      return friend._id === profileUser._id;
+      return friend._id === profileUser?._id;
     });
     return userFriend.length > 0;
+  };
+
+  const checkRequest = () => {
+    const userRequests = user?.receivedRequests.filter((request) => {
+      return request.user.toString() === profileUser?._id;
+    });
+    return userRequests?.length > 0;
+  };
+
+  const checkPending = () => {
+    const userRequests = user?.sentRequests.filter((request) => {
+      return request.user.toString() === profileUser?._id;
+    });
+
+    return userRequests.length > 0;
   };
 
   return (
@@ -40,7 +55,9 @@ const Profile = () => {
         username={profileUser?.firstName + ' ' + profileUser?.lastName}
         friends={profileUser?.friends.length}
         myProfile={user?._id === profileUser?._id}
-        checkFriend={checkFriend}
+        checkFriend={checkFriend()}
+        checkRequest={checkRequest()}
+        checkPending={checkPending()}
       />
       <div className='profile-container'>
         <div className='profile-left'>
