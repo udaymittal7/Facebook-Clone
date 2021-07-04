@@ -43,7 +43,7 @@
 }
 
 .widget:hover {
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 .widget::-webkit-scrollbar {

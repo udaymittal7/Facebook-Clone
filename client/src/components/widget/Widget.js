@@ -24,6 +24,7 @@ function Widget({ friends }) {
             <Friend
               name={friend.firstName + ' ' + friend.lastName}
               profilePicture={PF + friend.profilePicture}
+              key={friend._id}
             />
           ))}
       </ul>
