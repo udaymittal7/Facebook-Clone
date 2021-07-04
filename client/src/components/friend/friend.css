@@ -1,7 +1,13 @@
 .widget-friend {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  padding: 5px 5px;
+  width: 100%;
+}
+
+.widget-friend:hover {
+  background-color: #dfe3ee;
+  border-radius: 10px;
 }
 
 .widget-profile-image-container {

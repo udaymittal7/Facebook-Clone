@@ -15,6 +15,7 @@ import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './utils/PrivateRoute';
 import LoadUser from './utils/LoadUser';
 import Profile from './pages/profile/Profile';
+import Messenger from './pages/messenger/Messenger';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -28,6 +29,7 @@ const App = () => {
         <Switch>
           <PrivateRoute exact path='/' component={Home} />
           <PrivateRoute exact path='/profile/:id' component={Profile} />
+          <PrivateRoute exact path='/messages' component={Messenger} />
           <PublicRoute exact path='/signin' component={SignIn} />
           <PublicRoute exact path='/signup' component={SignUp} />
           <PublicRoute

@@ -46,7 +46,9 @@ const TimelineHeader = ({
     newPost.append('cover', true);
     dispatch(updatePicture(user._id, newPost));
     setCoverImage(null);
-    window.location.reload();
+    setInterval(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   const updateProfileImage = () => {
@@ -56,22 +58,30 @@ const TimelineHeader = ({
     newPost.append('profile', true);
     dispatch(updatePicture(user._id, newPost));
     setProfileImage(null);
-    window.location.reload();
+    setInterval(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   const removeFriend = () => {
     dispatch(removeUserFriend(profileUserId.id));
-    window.location.reload();
+    setInterval(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   const sendRequest = () => {
     dispatch(sendFriendRequest(profileUserId.id));
-    window.location.reload();
+    setInterval(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   const acceptRequest = () => {
     dispatch(acceptFriendRequest(profileUserId.id));
-    window.location.reload();
+    setInterval(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   return (
@@ -204,6 +214,8 @@ const TimelineHeader = ({
                 ? removeFriend
                 : checkRequest
                 ? acceptRequest
+                : checkPending
+                ? console.log('click')
                 : sendRequest
             }
           >

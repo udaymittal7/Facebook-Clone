@@ -50,11 +50,11 @@ app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
 app.use('/api/post', postRoute);
 app.use('/api/story', storyRoute);
-app.use("/api/messages", messageRoute);
-app.use("/api/conversations", conversationRoute);
+app.use('/api/messages', messageRoute);
+app.use('/api/conversations', conversationRoute);
 
 // undefined route
-app.all('*', (req, res, next) => {
+app.all('*', (req, res) => {
   res.status(404).json({
     status: 'fail',
     message: `Could not find ${req.url}`,
@@ -74,7 +74,11 @@ const removeUser = (socketId) => {
 };
 
 const getUser = (userId) => {
-  return users.find((user) => user.userId === userId);
+  console.log(users);
+  return users.find((user) => {
+    console.log(user, user.userId, userId, user.userId === userId);
+    user.userId === userId;
+  });
 };
 
 io.on('connection', (socket) => {
@@ -90,6 +94,7 @@ io.on('connection', (socket) => {
   //send and get message
   socket.on('sendMessage', ({ senderId, receiverId, text }) => {
     const user = getUser(receiverId);
+    console.log(user);
     io.to(user.socketId).emit('getMessage', {
       senderId,
       text,

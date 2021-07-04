@@ -27,6 +27,7 @@ router.get('/:conversationId', async (req, res) => {
     });
     res.status(200).json(messages);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

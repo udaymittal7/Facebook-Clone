@@ -1,5 +1,6 @@
 // Databases
 const User = require('../database/Users/User');
+const Conversation = require('../database/Chat/Conversations/Conversation');
 
 // helper function
 const checkIfSentRequest = (user, id) => {
@@ -274,6 +275,16 @@ exports.acceptFriendRequest = async (req, res) => {
     // Updating friends of both currentUser and friend
     currentUser.friends.push(friendId);
     friend.friends.push(req.user.id);
+
+    // creating new conversation between user and friend
+    if (
+      !(await Conversation.exists({
+        members: { $all: [req.user.id.toString(), req.params.id] },
+      }))
+    )
+      await Conversation.create({
+        members: [req.user.id.toString(), req.params.id],
+      });
 
     // Continue if no errors
 

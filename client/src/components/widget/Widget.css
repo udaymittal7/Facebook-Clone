@@ -27,6 +27,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  cursor: pointer;
 }
 
 .widget-header-icon > .MuiSvgIcon-root {
@@ -34,16 +35,21 @@
 }
 
 .widget-friendlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0;
   margin: 0;
   list-style: none;
   padding: 0 20px;
   margin-top: 15px;
   overflow: hidden;
+  cursor: pointer;
+  color: black;
 }
 
 .widget:hover {
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
 .widget::-webkit-scrollbar {

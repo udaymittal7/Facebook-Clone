@@ -18,7 +18,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
-const Header = (props) => {
+const Header = () => {
   const { user } = useSelector((state) => state.auth);
   const history = useHistory();
 
@@ -72,7 +72,10 @@ const Header = (props) => {
         <div className='header__right__icons'>
           <NotificationsIcon />
         </div>
-        <div className='header__right__icons'>
+        <div
+          className='header__right__icons'
+          onClick={() => history.push('/messages/')}
+        >
           <ChatIcon />
         </div>
         <div className='header__right__icons'>
