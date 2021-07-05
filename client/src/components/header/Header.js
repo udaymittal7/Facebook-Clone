@@ -1,26 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css';
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
-import DashboardIcon from '@material-ui/icons/Dashboard';
 import DashboardIconOutlined from '@material-ui/icons/DashboardOutlined';
-import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
 import SubscriptionsIconOutlined from '@material-ui/icons/SubscriptionsOutlined';
-import StorefrontIcon from '@material-ui/icons/Storefront';
 import StorefrontIconOutlined from '@material-ui/icons/StorefrontOutlined';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import SupervisedUserCircleIconOutlined from '@material-ui/icons/SupervisedUserCircleOutlined';
 import { Avatar, IconButton } from '@material-ui/core';
 import AppsIcon from '@material-ui/icons/Apps';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ChatIcon from '@material-ui/icons/Chat';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import Brightness2Icon from '@material-ui/icons/Brightness2';
+import Modal from 'react-modal';
 import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
 const Header = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const history = useHistory();
+
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  const modalStyle = {
+    overlay: {
+      backgroundColor: 'rgb(0, 0, 0, 0.4)',
+      zIndex: 1000,
+    },
+    content: {
+      zIndex: 1000,
+      height: '35%',
+      width: '22%',
+      marginTop: '15px',
+      marginLeft: 'auto',
+      marginRight: '-25px',
+      borderRadius: '8px',
+      padding: '15px 0px 20px 0',
+    },
+  };
 
   return (
     <div className='header'>
@@ -63,7 +82,7 @@ const Header = () => {
           className='header__info'
           onClick={() => history.push(`/profile/${user?._id}`)}
         >
-          <Avatar src={user?.profilePicture} />
+          <Avatar src={user && PF + user.profilePicture} />
           <span className='header__info__text'>{user?.firstName}</span>
         </div>
         <div className='header__right__icons'>
@@ -79,7 +98,56 @@ const Header = () => {
           <ChatIcon />
         </div>
         <div className='header__right__icons'>
-          <ArrowDropDownIcon />
+          <ArrowDropDownIcon onClick={() => setModalIsOpen(true)} />
+          <Modal
+            preventScroll={true}
+            isOpen={modalIsOpen}
+            onRequestClose={() => setModalIsOpen(false)}
+            style={modalStyle}
+            ariaHideApp={false}
+          >
+            <div className='modal__container'>
+              <div className='modal__header'>
+                <Avatar src={user && PF + user.profilePicture} />
+                <span className='modal__header__text'>
+                  {user?.firstName + ' ' + user?.lastName}
+                </span>
+              </div>
+              <div className='modal__row'>
+                <div className='modal__row__title'>
+                  <div className='modal__row__text'>
+                    <Brightness2Icon /> Dark Mode
+                  </div>
+                </div>
+                <div className='modal__row__option'>
+                  <label htmlFor='off' className='modal__row__label'>
+                    Off
+                  </label>
+                  <input
+                    name='off'
+                    className='modal__row__option__radio'
+                    type='checkbox'
+                    value='Off'
+                  />
+                </div>
+                <div className='modal__row__option'>
+                  <label htmlFor='on' className='modal__row__label'>
+                    On
+                  </label>
+                  <input
+                    name='on'
+                    className='modal__row__option__radio'
+                    type='checkbox'
+                    value='On'
+                  />
+                </div>
+              </div>
+              <div className='modal__bottom'>
+                <MeetingRoomIcon />
+                <div className='modal__bottom__text'>Log Out</div>
+              </div>
+            </div>
+          </Modal>
         </div>
       </div>
     </div>

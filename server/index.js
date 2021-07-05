@@ -75,14 +75,11 @@ const removeUser = (socketId) => {
 
 const getUser = (userId) => {
   console.log(users);
-  return users.find((user) => {
-    console.log(user, user.userId, userId, user.userId === userId);
-    user.userId === userId;
-  });
+  return users.find((user) => user.userId === userId);
 };
 
 io.on('connection', (socket) => {
-  //when ceonnect
+  //when connect
   console.log('a user connected.');
 
   //take userId and socketId from user

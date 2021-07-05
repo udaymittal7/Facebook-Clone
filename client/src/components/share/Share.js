@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import { createPost, getPostsTimeline } from '../../redux/actions/postAction';
 
 const Share = () => {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
   const [media, setMedia] = useState(null);
 
   const desc = useRef();
@@ -36,7 +38,7 @@ const Share = () => {
     <form className='share' onSubmit={handleSubmit}>
       <div className='share__top'>
         <Link to={`/profile/${user._id}`}>
-          <Avatar src={user.profilePicture} />
+          <Avatar src={PF + user.profilePicture} />
         </Link>
         <input
           ref={desc}

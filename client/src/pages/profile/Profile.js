@@ -12,6 +12,7 @@ import './profile.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import { format } from 'timeago.js';
 
 const Profile = () => {
   const { profilePosts } = useSelector((state) => state.post);
@@ -22,7 +23,7 @@ const Profile = () => {
   useEffect(() => {
     dispatch(loadProfileUser(id));
     dispatch(getPostsProfile(id));
-  }, [profileUser]);
+  }, [id]);
 
   const checkFriend = () => {
     const userFriend = user.friends.filter((friend) => {
@@ -90,7 +91,7 @@ const Profile = () => {
               key={profilePost._id}
               profilePicture={profilePost.user.profilePicture}
               desc={profilePost.desc}
-              timestamp={profilePost.updatedAt}
+              timestamp={format(profilePost.createdAt)}
               username={
                 profilePost.user.firstName + ' ' + profilePost.user.lastName
               }

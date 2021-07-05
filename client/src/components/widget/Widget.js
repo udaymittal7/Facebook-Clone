@@ -31,6 +31,7 @@ function Widget({ friends }) {
                     ? PF + friend.profilePicture
                     : 'https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg'
                 }
+                key={friend._id}
               />
             ))}
         </ul>

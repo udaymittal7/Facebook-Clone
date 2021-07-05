@@ -61,11 +61,11 @@ const Post = ({
       <div className='post__top'>
         <div className='post__topInfo'>
           <Link to={`/profile/${userId}`}>
-            <Avatar src={profilePicture} className='post__avatar' />
+            <Avatar src={PF + profilePicture} className='post__avatar' />
           </Link>
           <div className='post__topInfoUser'>
             <h3>{username}</h3>
-            <p>{new Date(timestamp).getHours()} h</p>
+            <p>{timestamp}</p>
           </div>
         </div>
         {user && user._id === userId && (
@@ -127,7 +127,10 @@ const Post = ({
           }}
         >
           <Link to={`/profile/${userId}`}>
-            <Avatar src={profilePicture} className='post__comment__avatar' />
+            <Avatar
+              src={PF + user?.profilePicture}
+              className='post__comment__avatar'
+            />
           </Link>
           <input
             name='content'

@@ -6,13 +6,14 @@ import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const { user } = useSelector((state) => state.auth);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (
     <div className='sidebar'>
       <div className='sidebar__top'>
         <Link to={`/profile/${user?._id}`} style={{ textDecoration: 'none' }}>
           <SidebarRow
-            src={`${user?.profilePicture}`}
+            src={`${PF + user?.profilePicture}`}
             title={`${user?.firstName + ' ' + user?.lastName}`}
           />
         </Link>

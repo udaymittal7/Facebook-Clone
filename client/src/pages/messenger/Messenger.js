@@ -23,6 +23,7 @@ const Messenger = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [arrivalMessage, setArrivalMessage] = useState(null);
+  const [receiver, setReceiver] = useState(null);
   const socket = useRef();
   const scrollRef = useRef();
 
@@ -83,6 +84,8 @@ const Messenger = () => {
       (member) => member !== user._id
     );
 
+    console.log(currentChat);
+
     socket.current.emit('sendMessage', {
       senderId: user._id,
       receiverId,
@@ -97,6 +100,23 @@ const Messenger = () => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    if (currentChat) {
+      const getReceiver = async () => {
+        try {
+          const receiverId = currentChat.members.find(
+            (member) => member !== user._id
+          );
+          const res = await axios.get(`/api/user/${receiverId}`);
+          setReceiver(res.data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getReceiver();
+    }
+  }, [currentChat]);
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -141,8 +161,18 @@ const Messenger = () => {
             <div>
               <div className='chatBoxHeader'>
                 <div className='chatBoxHeaderLeft'>
-                  <Avatar className='chatBoxHeaderPicture' alt='' />
-                  <span className='chatBoxHeaderName'>Uday Mittal</span>
+                  <Avatar
+                    className='chatBoxHeaderPicture'
+                    alt=''
+                    src={
+                      receiver && receiver.profilePicture
+                        ? receiver.profilePicture
+                        : 'https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg'
+                    }
+                  />
+                  <span className='chatBoxHeaderName'>
+                    {receiver?.firstName + ' ' + receiver?.lastName}
+                  </span>
                 </div>
                 <div className='chatBoxHeaderRight'>
                   <div className='chatBoxHeaderIcon'>
@@ -169,7 +199,11 @@ const Messenger = () => {
                 ))}
               </div>
               <div className='chatMessageInput'>
-                <input placeholder='Aa' />
+                <input
+                  placeholder='Aa'
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  value={newMessage}
+                />
                 <button className='chatSubmitButton' onClick={handleSubmit}>
                   <SendIcon />
                 </button>
