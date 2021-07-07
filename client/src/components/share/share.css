@@ -9,10 +9,18 @@
   margin-right: 15px;
 }
 
+.share__dark {
+  background: #242526;
+}
+
 .share__top {
   display: flex;
   border-bottom: 1px solid #eff2f5;
   padding: 15px;
+}
+
+.share__top__dark {
+  border-bottom: 1px solid #3a3b3c;
 }
 
 .share__top {
@@ -27,6 +35,16 @@
   margin: 0 10px;
   border-radius: 999px;
   background-color: #eff2f5;
+}
+
+.share__top__dark > input {
+  outline-width: 0;
+  border: none;
+  padding: 5px 20px;
+  margin: 0 10px;
+  border-radius: 999px;
+  background-color: #3a3b3c;
+  color: white;
 }
 
 .share__imageContainer {
@@ -92,7 +110,12 @@
   cursor: pointer;
 }
 
-.share__options > div {
+.share__options__dark {
+  color: lightgray;
+}
+
+.share__options > div,
+.share__options__dark > div {
   font-size: medium;
   font-weight: 500;
   margin-left: 10px;
@@ -100,5 +123,10 @@
 
 .share__options:hover {
   background-color: #eff2f5;
+  border-radius: 10px;
+}
+
+.share__options__dark:hover {
+  background-color: #3a3b3c;
   border-radius: 10px;
 }

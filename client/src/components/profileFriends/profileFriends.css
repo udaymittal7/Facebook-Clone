@@ -7,6 +7,11 @@
   margin-top: 20px;
 }
 
+.profileFriends-dark {
+  color: white;
+  background: #242526;
+}
+
 .profileFriends-top {
   display: flex;
   justify-content: space-between;
@@ -16,7 +21,6 @@
 .profileFriends-header {
   font-size: 20px;
   font-weight: bold;
-  color: black;
 }
 
 .profileFriends-header:hover {
@@ -32,6 +36,10 @@
 
 .profileFriends-button:hover {
   background: #eff2f5;
+}
+
+.profileFriends-button-dark:hover {
+  background: #3a3b3c;
 }
 
 .profileFriends-button:focus {

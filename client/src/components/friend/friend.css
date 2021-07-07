@@ -10,6 +10,11 @@
   border-radius: 10px;
 }
 
+.widget-friend-dark:hover {
+  background-color: #3a3b3c;
+  border-radius: 10px;
+}
+
 .widget-profile-image-container {
   margin-right: 10px;
   position: relative;

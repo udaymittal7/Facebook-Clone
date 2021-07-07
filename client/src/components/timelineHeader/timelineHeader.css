@@ -3,6 +3,11 @@
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
+.timelineHeader-container-dark {
+  background: #242526;
+  color: white;
+}
+
 .timelineHeader-coverImage-container {
   position: relative;
   height: 380px;
@@ -10,6 +15,7 @@
   border-bottom-left-radius: 10px;
   display: flex;
   justify-content: center;
+  color: black;
 }
 
 .timelineHeader-coverImage {
@@ -38,7 +44,6 @@
   margin-top: -10px;
   font-size: 35px;
   font-weight: 700;
-  color: black;
 }
 
 .timelineHeader-border {
@@ -65,6 +70,10 @@
   color: grey;
   font-weight: 500;
   cursor: pointer;
+}
+
+.timelineHeader-option-dark {
+  color: lightgray;
 }
 
 .timelineHeader-option:hover {
@@ -98,6 +107,10 @@
   font-weight: 500;
 }
 
+.timelineHeader-option-dropdown-dark {
+  color: lightgray;
+}
+
 .timelineHeader-option-dropdown:hover {
   background: #eff2f5;
   border-radius: 4px;
@@ -127,6 +140,16 @@
   font-size: 15px;
   font-weight: 500;
   cursor: pointer;
+  transition: filter 300ms;
+}
+
+.timelineHeader-icon-dark {
+  background-color: #3a3b3c;
+  color: white;
+}
+
+.timelineHeader-icon:hover {
+  filter: brightness(1.1);
 }
 
 .timelineHeader-icon > .MuiSvgIcon-root {
@@ -146,10 +169,11 @@
   background: white;
   border-radius: 8px;
   padding: 10px 10px 10px 5px;
+  transition: filter 300ms;
 }
 
 .timelineHeader-coverImage-edit:hover {
-  background: #f1f1f1;
+  filter: brightness(0.8);
 }
 
 .timelineHeader-coverImage-edit > .MuiSvgIcon-root {

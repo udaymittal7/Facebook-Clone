@@ -11,7 +11,10 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className='sidebar__top'>
-        <Link to={`/profile/${user?._id}`} style={{ textDecoration: 'none' }}>
+        <Link
+          to={`/profile/${user?._id}`}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
           <SidebarRow
             src={`${PF + user?.profilePicture}`}
             title={`${user?.firstName + ' ' + user?.lastName}`}
@@ -113,34 +116,6 @@ const Sidebar = () => {
           url='https://static.xx.fbcdn.net/rsrc.php/v3/yC/r/bo0Zt72NIra.png'
           title='Weather'
         />
-        {/* <div className='sidebarRow__shortcutheading'>
-          <hr className='sidebarRow__line' />
-          <span>Your shortcuts</span>
-        </div>
-        <SidebarRow
-          src='https://scontent.fpat2-1.fna.fbcdn.net/v/t1.0-9/75317333_108050823979255_17253192865677312_n.jpg?_nc_cat=105&ccb=2&_nc_sid=09cbfe&_nc_ohc=BMyeUf9IEdcAX_WViQb&_nc_ht=scontent.fpat2-1.fna&oh=012f1f9d3afcaefd93bd1d0b805e8d25&oe=5FE4FE9D'
-          title='Projects On Real Life System'
-        />
-        <SidebarRow
-          url='https://avatars2.githubusercontent.com/u/56448109?s=60&v=4'
-          title='Code With Akky'
-        />
-        <SidebarRow
-          url='https://scontent.fpat2-1.fna.fbcdn.net/v/t1.0-0/p180x540/127187656_2715077608712917_1635609771179964681_o.jpg?_nc_cat=1&ccb=2&_nc_sid=825194&_nc_ohc=-489LdkVWKQAX8ucsB0&_nc_ht=scontent.fpat2-1.fna&tp=6&oh=614db2bfd90b4bdfbb433af1e4e79e6c&oe=5FE6A601'
-          title='Accenture India'
-        />
-        <SidebarRow
-          url='https://scontent.fpat2-1.fna.fbcdn.net/v/t1.0-9/12006118_10153732926228304_8814249759706027421_n.jpg?_nc_cat=106&ccb=2&_nc_sid=825194&_nc_ohc=3sAR1VC3kJMAX_7FjD7&_nc_ht=scontent.fpat2-1.fna&oh=b44549047ea589d87e94ecf99421b9f0&oe=5FE6DD26'
-          title='Github Social Coding'
-        />
-        <SidebarRow
-          url='https://scontent.fpat2-1.fna.fbcdn.net/v/t1.0-9/75317333_108050823979255_17253192865677312_n.jpg?_nc_cat=105&ccb=2&_nc_sid=09cbfe&_nc_ohc=BMyeUf9IEdcAX_WViQb&_nc_ht=scontent.fpat2-1.fna&oh=012f1f9d3afcaefd93bd1d0b805e8d25&oe=5FE4FE9D'
-          title='OMG'
-        />
-        <SidebarRow
-          url='https://scontent.fpat2-1.fna.fbcdn.net/v/t1.0-9/75317333_108050823979255_17253192865677312_n.jpg?_nc_cat=105&ccb=2&_nc_sid=09cbfe&_nc_ohc=BMyeUf9IEdcAX_WViQb&_nc_ht=scontent.fpat2-1.fna&oh=012f1f9d3afcaefd93bd1d0b805e8d25&oe=5FE4FE9D'
-          title='REACT'
-        /> */}
       </div>
     </div>
   );

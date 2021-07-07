@@ -16,6 +16,11 @@
   border-radius: 10px 0px 0px 10px;
 }
 
+.sidebarRowDark:hover {
+  background: #3a3b3c;
+  border-radius: 10px 0px 0px 10px;
+}
+
 .sidebarRow > .sidebarRow__image {
   width: 35px;
   height: 35px;
@@ -25,7 +30,6 @@
 
 .sidebarRow > span {
   font-size: 15px;
-  color: black;
   font-weight: 500;
   margin-left: 15px;
 }

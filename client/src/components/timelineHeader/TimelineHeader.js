@@ -31,6 +31,9 @@ const TimelineHeader = ({
   checkPending,
 }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  const theme = localStorage.getItem('theme');
+
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
 
@@ -85,7 +88,11 @@ const TimelineHeader = ({
   };
 
   return (
-    <div className='timelineHeader-container'>
+    <div
+      className={`timelineHeader-container ${
+        theme === 'dark' && 'timelineHeader-container-dark'
+      }`}
+    >
       <div className='timelineHeader-coverImage-container'>
         <img
           src={
@@ -191,14 +198,40 @@ const TimelineHeader = ({
           <div className='timelineHeader-option timelineHeader-option-active'>
             Posts
           </div>
-          <div className='timelineHeader-option'>About</div>
-          <div className='timelineHeader-option'>
+          <div
+            className={`timelineHeader-option ${
+              theme === 'dark' && 'timelineHeader-option-dark'
+            }`}
+          >
+            About
+          </div>
+          <div
+            className={`timelineHeader-option ${
+              theme === 'dark' && 'timelineHeader-option-dark'
+            }`}
+          >
             Friends{' '}
             <span className='timelineHeader-option-detail'>{friends}</span>
           </div>
-          <div className='timelineHeader-option'>Photos</div>
-          <div className='timelineHeader-option'>Story Archives</div>
-          <div className='timelineHeader-option-dropdown'>
+          <div
+            className={`timelineHeader-option ${
+              theme === 'dark' && 'timelineHeader-option-dark'
+            }`}
+          >
+            Photos
+          </div>
+          <div
+            className={`timelineHeader-option ${
+              theme === 'dark' && 'timelineHeader-option-dark'
+            }`}
+          >
+            Story Archives
+          </div>
+          <div
+            className={`timelineHeader-option-dropdown ${
+              theme === 'dark' && 'timelineHeader-option-dropdown-dark'
+            }`}
+          >
             More
             <span className='timelineHeader-option-dropdown-icon'>
               <ArrowDropDownIcon />
@@ -230,11 +263,20 @@ const TimelineHeader = ({
                 ? 'Request Pending'
                 : 'Add Friend')}
           </button>
-          <button className='timelineHeader-icon'>
+          <button
+            className={`timelineHeader-icon ${
+              theme === 'dark' && 'timelineHeader-icon-dark'
+            }`}
+          >
             {myProfile ? <EditIcon /> : <MessageIcon />}
             {myProfile ? 'Edit Profile' : 'Message'}
           </button>
-          <button className='timelineHeader-icon' style={{ width: 40 }}>
+          <button
+            className={`timelineHeader-icon ${
+              theme === 'dark' && 'timelineHeader-icon-dark'
+            }`}
+            style={{ width: 40 }}
+          >
             <MoreHorizIcon />
           </button>
         </div>

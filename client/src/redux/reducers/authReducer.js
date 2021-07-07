@@ -14,6 +14,7 @@ import {
   REMOVE_FRIEND,
   SEND_FRIEND_REQUEST,
   ACCEPT_FRIEND_REQUEST,
+  LOGOUT_USER,
 } from '../actions/types';
 
 const initialState = {
@@ -62,6 +63,8 @@ const authReducer = (state = initialState, action) => {
         profileUser: action.payload,
         loading: false,
       };
+    case LOGOUT_USER:
+      localStorage.removeItem('token');
     case AUTH_FAIL:
     case EMAIL_FAIL:
     case RESET_PASSWORD_FAIL:

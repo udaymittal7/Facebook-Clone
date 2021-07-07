@@ -3,13 +3,24 @@ import './profileFriends.css';
 import { Link } from 'react-router-dom';
 
 const ProfileFriends = ({ friends }) => {
+  const theme = localStorage.getItem('theme');
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (
-    <div className='profileFriends-container'>
+    <div
+      className={`profileFriends-container ${
+        theme === 'dark' && 'profileFriends-dark'
+      }`}
+    >
       <div className='profileFriends-top'>
         <div className='profileFriends-header'>Friends</div>
-        <div className='profileFriends-button'>See All Friends</div>
+        <div
+          className={`profileFriends-button ${
+            theme === 'dark' && 'profileFriends-button-dark'
+          }`}
+        >
+          See All Friends
+        </div>
       </div>
       <div className='profileFriends-bottom'>
         {friends?.length > 0 &&
@@ -17,7 +28,7 @@ const ProfileFriends = ({ friends }) => {
             <div key={friend._id}>
               <Link
                 to={`/profile/${friend._id}`}
-                style={{ textDecoration: 'none', color: 'black' }}
+                style={{ textDecoration: 'none', color: 'inherit' }}
               >
                 <img
                   src={

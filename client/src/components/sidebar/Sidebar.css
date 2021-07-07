@@ -34,16 +34,3 @@
   background: #bdbdbd;
   border-radius: 5px;
 }
-
-.sidebarRow__line {
-  margin: 10px 10px 10px 0;
-  width: 20vw;
-  color: #bdbdbd;
-}
-
-.sidebarRow__shortcutheading {
-  padding: 10px;
-  color: gray;
-  font-size: 18px;
-  font-weight: 500;
-}

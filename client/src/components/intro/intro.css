@@ -6,10 +6,14 @@
   padding: 16px;
 }
 
+.intro-dark {
+  background: #242526;
+  color: white;
+}
+
 .intro-heading {
   font-size: 20px;
   font-weight: bold;
-  color: black;
 }
 
 .intro-row {
@@ -38,6 +42,11 @@
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.intro-row-button-dark {
+  background-color: #3a3b3c;
+  color: white;
 }
 
 .modal-container {

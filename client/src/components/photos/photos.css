@@ -7,6 +7,11 @@
   margin-top: 20px;
 }
 
+.photo-dark {
+  color: white;
+  background: #242526;
+}
+
 .photos-top {
   display: flex;
   justify-content: space-between;
@@ -16,7 +21,6 @@
 .photos-header {
   font-size: 20px;
   font-weight: bold;
-  color: black;
 }
 
 .photos-header:hover {
@@ -32,6 +36,10 @@
 
 .photos-button:hover {
   background: #eff2f5;
+}
+
+.photos-button-dark:hover {
+  background: #3a3b3c;
 }
 
 .photos-button:focus {

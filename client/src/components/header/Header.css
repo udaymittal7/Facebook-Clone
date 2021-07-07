@@ -11,6 +11,12 @@
   box-sizing: border-box;
 }
 
+.dark__header {
+  color: white;
+  background: #242526;
+  border-bottom: 1px #3a3b3c solid;
+}
+
 .header__left {
   display: flex;
   align-items: center;
@@ -37,10 +43,28 @@
   height: 40px;
 }
 
+.header__input__dark {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  background-color: #3a3b3c;
+  padding: 10px;
+  border-radius: 33px;
+  width: 18vw;
+  height: 40px;
+}
+
 .header__input > input {
   border: none;
   outline-width: 0;
   background-color: transparent;
+}
+
+.header__input__dark > input {
+  border: none;
+  outline-width: 0;
+  background-color: transparent;
+  color: white;
 }
 
 .header__input__text {
@@ -64,6 +88,14 @@
   cursor: pointer;
 }
 
+.header__options__dark {
+  display: flex;
+  align-items: center;
+  padding: 10px 40px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
 .header__options:hover {
   background-color: #eff2f5;
   border-radius: 10px;
@@ -71,8 +103,20 @@
   border-bottom: none;
 }
 
+.header__options__dark:hover {
+  background-color: #3a3b3c;
+  border-radius: 10px;
+  align-items: center;
+  border-bottom: none;
+}
+
 .header__options > .MuiSvgIcon-root {
   color: rgb(107, 103, 103);
+  font-size: 30px;
+}
+
+.header__options__dark > .MuiSvgIcon-root {
+  color: lightgray;
   font-size: 30px;
 }
 
@@ -100,14 +144,18 @@
 .header__info {
   display: flex;
   align-items: center;
-  margin: 7px 0 10px 40px;
-  padding: 5px;
+  margin: 3px 5px 10px 40px;
+  padding: 20px 5px;
   cursor: pointer;
 }
 
 .header__info:hover {
   border-radius: 20px;
   background-color: #dfe3ee;
+}
+
+.header__info__dark:hover {
+  background: #3a3b3c;
 }
 
 .header__info > .MuiAvatar-root {
@@ -127,13 +175,28 @@
   padding: 10px 10px;
   margin: 2px 5px;
   cursor: pointer;
-  background-color: #dfe3ee;
+  background-color: #dfe0e6;
+  border-radius: 50%;
+  transition: filter 300ms;
+}
+
+.header__right__icons__dark {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  margin: 2px 5px;
+  cursor: pointer;
+  background-color: #3a3b3c;
   border-radius: 50%;
   transition: filter 300ms;
 }
 
 .header__right__icons:hover {
   filter: brightness(0.9);
+}
+
+.header__right__icons__dark:hover {
+  filter: brightness(1.2);
 }
 
 .modal__container {
@@ -207,6 +270,10 @@
   background-color: #eff2f5;
 }
 
+.modal__row__option__dark:hover {
+  background: #3a3b3c;
+}
+
 .modal__row__label {
   font-weight: 500;
 }
@@ -235,4 +302,8 @@
 
 .modal__bottom:hover {
   background-color: #eff2f5;
+}
+
+.modal__bottom__dark:hover {
+  background: #3a3b3c;
 }

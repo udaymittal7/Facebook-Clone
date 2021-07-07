@@ -2,13 +2,20 @@ import React from 'react';
 import './photos.css';
 
 const Photos = ({ posts, profilePicture, coverPicture }) => {
+  const theme = localStorage.getItem('theme');
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (
-    <div className='photos-container'>
+    <div className={`photos-container ${theme === 'dark' && 'photo-dark'}`}>
       <div className='photos-top'>
         <div className='photos-header'>Photos</div>
-        <div className='photos-button'>See All Photos</div>
+        <div
+          className={`photos-button ${
+            theme === 'dark' && 'photos-button-dark'
+          }`}
+        >
+          See All Photos
+        </div>
       </div>
       <div className='photos-bottom'>
         {posts?.length > 0 &&

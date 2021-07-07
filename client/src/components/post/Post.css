@@ -6,6 +6,10 @@
   box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
 }
 
+.post__dark {
+  background: #242526;
+}
+
 .post__avatar {
   display: flex;
   margin-right: 10px;
@@ -37,6 +41,10 @@
   background-color: white;
 }
 
+.post__topInfoDelete__dark {
+  background: #242526;
+}
+
 .post__bottom {
   margin-top: 10px;
   margin-bottom: 0px;
@@ -62,6 +70,10 @@
   font-size: medium;
   color: gray;
   font-weight: 500;
+}
+
+.post__details__dark {
+  color: lightgray;
 }
 
 .post__detail {
@@ -94,6 +106,12 @@
   font-weight: 500;
 }
 
+.post__options__dark {
+  color: lightgray;
+  border-top: 1px solid #3a3b3c;
+  border-bottom: 1px solid #3a3b3c;
+}
+
 .post__option {
   display: flex;
   align-items: center;
@@ -109,6 +127,10 @@
 .post__option:hover {
   background-color: #eff2f5;
   border-radius: 10px;
+}
+
+.post__option__dark:hover {
+  background: #3a3b3c;
 }
 
 .blue {
@@ -140,6 +162,11 @@
   border-radius: 999px;
   background-color: #eff2f5;
   width: 100%;
+}
+
+.post__comment__input__dark {
+  background-color: #3a3b3c;
+  color: white;
 }
 
 .post__comments__friends {

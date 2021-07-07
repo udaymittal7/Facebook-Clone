@@ -17,6 +17,7 @@ import {
   REMOVE_FRIEND,
   SEND_FRIEND_REQUEST,
   ACCEPT_FRIEND_REQUEST,
+  LOGOUT_USER,
 } from './types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,12 +37,29 @@ export const signup = (user) => {
         type: SIGNUP_USER,
         payload: res.data,
       });
+
+      toast.success('Registered Successfully', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     } catch (err) {
       console.log(err.response.data.message);
       dispatch({
         type: AUTH_FAIL,
         payload: err.response.data.message,
       });
+
+      if (err.response.data.message === 'User with that email already exists') {
+        toast.error(err.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000,
+        });
+      } else {
+        toast.error('Some error occurred. Please try again.', {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000,
+        });
+      }
     }
   };
 };
@@ -59,13 +77,44 @@ export const login = (user) => {
         type: LOGIN_USER,
         payload: res.data,
       });
+
+      toast.success('Logged In Successfully', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     } catch (err) {
       console.log(err);
       dispatch({
         type: AUTH_FAIL,
         payload: err,
       });
+
+      if (
+        err.response.data.message === 'User not found' ||
+        err.response.data.message === 'Wrong password'
+      ) {
+        toast.error(err.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+        });
+      } else {
+        toast.error('Some error occurred. Please try again.', {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000,
+        });
+      }
     }
+  };
+};
+
+export const logout = () => {
+  return async (dispatch) => {
+    setAuthToken();
+    dispatch({ type: LOGOUT_USER });
+    toast.success('Logged Out', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
   };
 };
 
@@ -82,11 +131,19 @@ export const sendResetPasswordEmail = (email) => {
         type: EMAIL_SUCCESS,
         payload: res.data.message,
       });
+      toast.success('Email sent successfully! Check your mail.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     } catch (err) {
       console.log(err.response.data.message);
       dispatch({
         type: EMAIL_FAIL,
         payload: err.response.data.message,
+      });
+      toast.error('Error sending mail. Please try again.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
       });
     }
   };
@@ -107,11 +164,19 @@ export const resetPassword = (data) => {
         type: RESET_PASSWORD_SUCCESS,
         payload: res.data,
       });
+      toast.success('Password successfully changed.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     } catch (err) {
       console.log(err);
       dispatch({
         type: RESET_PASSWORD_FAIL,
         payload: err.response.data.message,
+      });
+      toast.error('Some error occurred. Try again.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
       });
     }
   };
@@ -168,9 +233,17 @@ export const updatePicture = (id, formData) => {
         type: UPDATE_PICTURE,
         payload: res.data,
       });
+      toast.success('Picture uploaded.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     } catch (err) {
       console.log(err);
       dispatch({ type: USER_ERROR });
+      toast.error('Some error occurred. Try again.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     }
   };
 };
@@ -188,9 +261,18 @@ export const updateUser = (id, data) => {
         type: UPDATE_USER,
         payload: res.data,
       });
+
+      toast.success('User details updated.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     } catch (err) {
       console.log(err);
       dispatch({ type: USER_ERROR });
+      toast.error('Some error occurred. Try again.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     }
   };
 };
@@ -208,9 +290,18 @@ export const removeUserFriend = (id) => {
         type: REMOVE_FRIEND,
         payload: res.data.user,
       });
+
+      toast.success('Friend removed.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     } catch (err) {
       console.log(err);
       dispatch({ type: USER_ERROR });
+      toast.error('Some error occurred. Try again.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     }
   };
 };
@@ -231,9 +322,18 @@ export const sendFriendRequest = (id) => {
         type: SEND_FRIEND_REQUEST,
         payload: res.data.user,
       });
+
+      toast.success('Request sent.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     } catch (err) {
       console.log(err);
       dispatch({ type: USER_ERROR });
+      toast.error('Some error occurred. Try again.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     }
   };
 };
@@ -254,9 +354,18 @@ export const acceptFriendRequest = (id) => {
         type: ACCEPT_FRIEND_REQUEST,
         payload: res.data.user,
       });
+
+      toast.succes('You both are now friends.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     } catch (err) {
       console.log(err);
       dispatch({ type: USER_ERROR });
+      toast.error('Some error occurred. Try again.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     }
   };
 };

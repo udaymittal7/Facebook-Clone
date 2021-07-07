@@ -15,6 +15,8 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import { format } from 'timeago.js';
 
 const Profile = () => {
+  const theme = localStorage.getItem('theme');
+
   const { profilePosts } = useSelector((state) => state.post);
   const { profileUser, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -60,7 +62,9 @@ const Profile = () => {
         checkRequest={checkRequest()}
         checkPending={checkPending()}
       />
-      <div className='profile-container'>
+      <div
+        className={`profile-container ${theme === 'dark' && 'profile-dark'}`}
+      >
         <div className='profile-left'>
           <Intro
             work={profileUser?.work}
@@ -77,12 +81,20 @@ const Profile = () => {
         </div>
         <div className='profile-right'>
           {user?._id === profileUser?._id && <Share />}
-          <div className='profile-right-posts'>
+          <div
+            className={`profile-right-posts ${
+              theme === 'dark' && 'profile-right-posts-dark'
+            }`}
+          >
             <div className='profile-right-posts-header-container'>
               <div className='profile-right-posts-header'>Posts</div>
-              <button className='profile-right-posts-button'>
+              <button
+                className={`profile-right-posts-button ${
+                  theme === 'dark' && 'profile-right-posts-button-dark'
+                }`}
+              >
                 <FilterListIcon />{' '}
-                <span className='profile-right-posts-detail'>Posts</span>
+                <span className='profile-right-posts-detail'>Filters</span>
               </button>
             </div>
           </div>

@@ -12,6 +12,8 @@ const Home = () => {
 
   const dispatch = useDispatch();
 
+  const theme = localStorage.getItem('theme');
+
   useEffect(() => {
     document.title = 'Facebook';
     dispatch(loadUser());
@@ -20,7 +22,7 @@ const Home = () => {
   return (
     <div>
       <Header />
-      <div className='home-body'>
+      <div className={`home-body ${theme === 'dark' ? 'dark-body' : ''}`}>
         <Sidebar />
         <Feed />
         <Widget friends={user?.friends} />

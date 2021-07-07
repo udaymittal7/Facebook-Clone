@@ -29,6 +29,8 @@ const Post = ({
 }) => {
   const [commentClick, setCommentClick] = useState(false);
 
+  const theme = localStorage.getItem('theme');
+
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -57,7 +59,7 @@ const Post = ({
   const likeChecker = likes.filter((like) => like.user.toString() === user._id);
 
   return (
-    <div className='post'>
+    <div className={`post ${theme === 'dark' && 'post__dark'}`}>
       <div className='post__top'>
         <div className='post__topInfo'>
           <Link to={`/profile/${userId}`}>
@@ -70,7 +72,9 @@ const Post = ({
         </div>
         {user && user._id === userId && (
           <div
-            className='post__topInfoDelete'
+            className={`post__topInfoDelete ${
+              theme === 'dark' && 'post__topInfoDelete__dark'
+            }`}
             onClick={() => deleteHandler(profilePostId || postId)}
           >
             <CancelIcon />
@@ -84,7 +88,11 @@ const Post = ({
             <img src={PF + media} alt='' />
           </div>
         )}
-        <div className='post__details'>
+        <div
+          className={`post__details ${
+            theme === 'dark' && 'post__details__dark'
+          }`}
+        >
           <div className='post__detail'>
             <ThumbUpAltOutlinedIcon />
             {likes.length} likes
@@ -97,10 +105,14 @@ const Post = ({
             {comments.length} comments
           </div>
         </div>
-        <div className='post__options'>
+        <div
+          className={`post__options ${
+            theme === 'dark' && 'post__options__dark'
+          }`}
+        >
           <div
-            className={`post__option ${
-              likeChecker.length > 0 ? 'icon-blue' : ''
+            className={`post__option ${likeChecker.length > 0 && 'icon-blue'} ${
+              theme === 'dark' && 'post__option__dark'
             }`}
             onClick={() => likeHandler(profilePostId || postId)}
           >
@@ -108,13 +120,19 @@ const Post = ({
             <p className={likeChecker.length > 0 ? 'blue' : ''}>Like</p>
           </div>
           <div
-            className='post__option'
+            className={`post__option ${
+              theme === 'dark' && 'post__option__dark'
+            }`}
             onClick={() => setCommentClick(!commentClick)}
           >
             <ModeCommentOutlinedIcon />
             <p>Comment</p>
           </div>
-          <div className='post__option'>
+          <div
+            className={`post__option ${
+              theme === 'dark' && 'post__option__dark'
+            }`}
+          >
             <NearMeIcon />
             <p>Share</p>
           </div>
@@ -135,7 +153,9 @@ const Post = ({
           <input
             name='content'
             type='text'
-            className='post__comment__input'
+            className={`post__comment__input ${
+              theme === 'dark' && 'post__comment__input__dark'
+            }`}
             placeholder='Write a comment...'
             onChange={onChange}
           />

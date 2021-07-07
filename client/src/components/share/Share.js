@@ -12,6 +12,8 @@ import { createPost, getPostsTimeline } from '../../redux/actions/postAction';
 const Share = () => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
+  const theme = localStorage.getItem('theme');
+
   const [media, setMedia] = useState(null);
 
   const desc = useRef();
@@ -35,8 +37,11 @@ const Share = () => {
   };
 
   return (
-    <form className='share' onSubmit={handleSubmit}>
-      <div className='share__top'>
+    <form
+      className={`share ${theme === 'dark' && 'share__dark'}`}
+      onSubmit={handleSubmit}
+    >
+      <div className={`share__top ${theme === 'dark' && 'share__top__dark'}`}>
         <Link to={`/profile/${user._id}`}>
           <Avatar src={PF + user.profilePicture} />
         </Link>
@@ -63,11 +68,20 @@ const Share = () => {
         </div>
       )}
       <div className='share__bottom'>
-        <div className='share__options'>
+        <div
+          className={`share__options ${
+            theme === 'dark' && 'share__options__dark'
+          }`}
+        >
           <VideocamIcon style={{ color: 'red' }} />
           <div>Live video</div>
         </div>
-        <label className='share__options' htmlFor={media}>
+        <label
+          className={`share__options ${
+            theme === 'dark' && 'share__options__dark'
+          }`}
+          htmlFor={media}
+        >
           <PhotoLibraryIcon style={{ color: 'green' }} />
           <div>Photo/Video</div>
           <input
@@ -78,7 +92,11 @@ const Share = () => {
             style={{ display: 'none' }}
           />
         </label>
-        <div className='share__options'>
+        <div
+          className={`share__options ${
+            theme === 'dark' && 'share__options__dark'
+          }`}
+        >
           <InsertEmoticonIcon style={{ color: 'orange' }} />
           <div>Feeling/Activity</div>
         </div>

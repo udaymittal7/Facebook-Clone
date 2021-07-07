@@ -12,6 +12,7 @@ import { loadProfileUser, updateUser } from '../../redux/actions/authAction';
 import './intro.css';
 
 const Intro = () => {
+  const theme = localStorage.getItem('theme');
   const { profileUser, user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -82,7 +83,7 @@ const Intro = () => {
   };
 
   return (
-    <div className='intro-container'>
+    <div className={`intro-container ${theme === 'dark' && 'intro-dark'}`}>
       <div className='intro-heading'>Intro</div>
       {profileUser &&
         profileUser.work &&
@@ -121,7 +122,9 @@ const Intro = () => {
       {profileUser?._id === currentUser._id && (
         <div className='intro-row'>
           <button
-            className='intro-row-button'
+            className={`intro-row-button ${
+              theme === 'dark' && 'intro-row-button-dark'
+            }`}
             onClick={() => setModalIsOpen(true)}
           >
             Edit details

@@ -8,6 +8,11 @@
   justify-content: center;
 }
 
+.profile-dark {
+  color: white;
+  background: #18191a;
+}
+
 .profile-left {
   grid-column: span 5 / span 5;
   grid-column-start: 1;
@@ -31,6 +36,11 @@
   width: 94%;
 }
 
+.profile-right-posts-dark {
+  background-color: #242526;
+  color: white;
+}
+
 .profile-right-posts-header-container {
   display: flex;
   justify-content: space-between;
@@ -40,7 +50,6 @@
 .profile-right-posts-header {
   font-size: 20px;
   font-weight: bold;
-  color: black;
 }
 
 .profile-right-posts-button {
@@ -52,6 +61,11 @@
   align-items: center;
   border: none;
   cursor: pointer;
+}
+
+.profile-right-posts-button-dark {
+  background: #3a3b3c;
+  color: white;
 }
 
 .profile-right-posts-button:focus {
