@@ -36,8 +36,10 @@ const Header = () => {
   };
 
   const themeSetter = (item) => {
-    setTheme(item);
-    window.location.reload();
+    if (theme !== item) {
+      setTheme(item);
+      window.location.reload();
+    }
   };
 
   useEffect(() => {

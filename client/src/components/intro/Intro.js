@@ -79,6 +79,9 @@ const Intro = () => {
       marginRight: 'auto',
       borderRadius: '8px',
       padding: '15px 0px 20px 0',
+      backgroundColor: `${theme === 'dark' ? '#242526' : 'white'}`,
+      color: `${theme === 'dark' ? 'white' : 'black'}`,
+      border: 'none',
     },
   };
 
@@ -171,6 +174,13 @@ const Intro = () => {
                       </>
                     ) : (
                       <div className='modal-row-input-container'>
+                        <label
+                          className={`modal-row-label ${
+                            theme === 'dark' && 'modal-row-label-dark'
+                          }`}
+                        >
+                          Company
+                        </label>
                         <input
                           placeholder='Company'
                           required
@@ -179,6 +189,13 @@ const Intro = () => {
                           className='modal-row-input'
                           defaultValue={company}
                         />
+                        <label
+                          className={`modal-row-label ${
+                            theme === 'dark' && 'modal-row-label-dark'
+                          }`}
+                        >
+                          Title
+                        </label>
                         <input
                           placeholder='Title'
                           required
@@ -203,6 +220,13 @@ const Intro = () => {
                       </>
                     ) : (
                       <div className='modal-row-input-container'>
+                        <label
+                          className={`modal-row-label ${
+                            theme === 'dark' && 'modal-row-label-dark'
+                          }`}
+                        >
+                          High School
+                        </label>
                         <input
                           placeholder='High School'
                           required
@@ -224,6 +248,13 @@ const Intro = () => {
                       </>
                     ) : (
                       <div className='modal-row-input-container'>
+                        <label
+                          className={`modal-row-label ${
+                            theme === 'dark' && 'modal-row-label-dark'
+                          }`}
+                        >
+                          University
+                        </label>
                         <input
                           placeholder='University'
                           required

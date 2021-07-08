@@ -76,7 +76,6 @@
 .modal-header-close > .MuiSvgIcon-root {
   border-radius: 50%;
   border: none;
-  color: lightgray;
 }
 
 .modal-header-close-icon {
@@ -114,6 +113,15 @@
 .modal-row-input-container {
   display: flex;
   flex-direction: column;
+}
+
+.modal-row-label {
+  color: black;
+  margin-bottom: 10px;
+}
+
+.modal-row-label-dark {
+  color: white;
 }
 
 .modal-row-input {

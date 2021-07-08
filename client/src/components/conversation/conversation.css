@@ -4,11 +4,16 @@
   padding: 10px 0;
   cursor: pointer;
   margin-top: 10px;
+  margin-left: 5px;
 }
 
 .conversation:hover {
   background-color: rgb(245, 243, 243);
   border-radius: 5px;
+}
+
+.conversation-dark:hover {
+  background: #3a3b3c;
 }
 
 .conversationImg {

@@ -20,9 +20,9 @@
 .messageText {
   padding: 10px;
   border-radius: 20px;
-  background-color: #1877f2;
-  color: white;
+  color: black;
   max-width: 300px;
+  background-color: rgb(245, 241, 241);
 }
 
 .messageBottom {
@@ -35,6 +35,6 @@
 }
 
 .message.own .messageText {
-  background-color: rgb(245, 241, 241);
-  color: black;
+  background-color: #1877f2;
+  color: white;
 }

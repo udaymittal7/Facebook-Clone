@@ -6,6 +6,7 @@ import { Avatar } from '@material-ui/core';
 const Conversation = ({ conversation, currentUser }) => {
   const [user, setUser] = useState(null);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const theme = localStorage.getItem('theme');
 
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser._id);
@@ -22,7 +23,7 @@ const Conversation = ({ conversation, currentUser }) => {
   }, [currentUser, conversation]);
 
   return (
-    <div className='conversation'>
+    <div className={`conversation ${theme === 'dark' && 'conversation-dark'}`}>
       <Avatar
         className='conversationImg'
         src={PF + user?.profilePicture}

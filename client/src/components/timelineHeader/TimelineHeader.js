@@ -18,7 +18,7 @@ import {
   sendFriendRequest,
   updatePicture,
 } from '../../redux/actions/authAction';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 const TimelineHeader = ({
   profilePicture,
@@ -33,6 +33,8 @@ const TimelineHeader = ({
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const theme = localStorage.getItem('theme');
+
+  const history = useHistory();
 
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
@@ -267,6 +269,7 @@ const TimelineHeader = ({
             className={`timelineHeader-icon ${
               theme === 'dark' && 'timelineHeader-icon-dark'
             }`}
+            onClick={!myProfile ? () => history.push('/messages') : null}
           >
             {myProfile ? <EditIcon /> : <MessageIcon />}
             {myProfile ? 'Edit Profile' : 'Message'}

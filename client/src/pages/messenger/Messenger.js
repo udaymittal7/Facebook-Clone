@@ -2,7 +2,7 @@ import './messenger.css';
 import Header from '../../components/header/Header';
 import Conversation from '../../components/conversation/Conversation';
 import Message from '../../components/message/Message';
-import ChatOnline from '../../components/chatUser/ChatUser';
+import ChatUser from '../../components/chatUser/ChatUser';
 import { useEffect, useRef, useState } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import VideoCallIcon from '@material-ui/icons/VideoCall';
@@ -15,9 +15,17 @@ import { Avatar } from '@material-ui/core';
 import axios from 'axios';
 import SocketIoClient from 'socket.io-client';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const Messenger = () => {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  const theme = localStorage.getItem('theme');
+
   const user = useSelector((state) => state.auth.user);
+
+  const history = useHistory();
+
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -125,19 +133,31 @@ const Messenger = () => {
   return (
     <>
       <Header />
-      <div className='messenger'>
-        <div className='chatMenu'>
+      <div className={`messenger ${theme === 'dark' && 'messenger-dark'}`}>
+        <div className={`chatMenu ${theme === 'dark' && 'chatMenu-dark'}`}>
           <div className='chatMenuWrapper'>
             <div className='chatMenuHeader'>
               <div className='chatMenuHeading'>Chats</div>
-              <div className='chatMenuHeaderIcon'>
+              <div
+                className={`chatMenuHeaderIcon ${
+                  theme === 'dark' && 'chatMenuHeaderIcon-dark'
+                }`}
+              >
                 <MoreHorizIcon />
               </div>
-              <div className='chatMenuHeaderIcon'>
+              <div
+                className={`chatMenuHeaderIcon ${
+                  theme === 'dark' && 'chatMenuHeaderIcon-dark'
+                }`}
+              >
                 <VideoCallIcon />
               </div>
             </div>
-            <div className='chatMenuInput'>
+            <div
+              className={`chatMenuInput ${
+                theme === 'dark' && 'chatMenuInput-dark'
+              }`}
+            >
               <SearchIcon color='disabled' />
               <input placeholder='Search Messenger' />
             </div>
@@ -145,7 +165,9 @@ const Messenger = () => {
               conversations.map((c) => (
                 <div
                   onClick={() => setCurrentChat(c)}
-                  className='chatMenuConversation'
+                  className={`chatMenuConversation ${
+                    theme === 'dark' && 'chatMenuConversation-dark'
+                  }`}
                 >
                   <Conversation
                     conversation={c}
@@ -156,17 +178,20 @@ const Messenger = () => {
               ))}
           </div>
         </div>
-        <div className='chatBox'>
+        <div className={`chatBox ${theme === 'dark' && 'chatBox-dark'}`}>
           {currentChat ? (
             <div>
               <div className='chatBoxHeader'>
-                <div className='chatBoxHeaderLeft'>
+                <div
+                  className='chatBoxHeaderLeft'
+                  onClick={() => history.push(`/profile/${receiver._id}`)}
+                >
                   <Avatar
                     className='chatBoxHeaderPicture'
                     alt=''
                     src={
                       receiver && receiver.profilePicture
-                        ? receiver.profilePicture
+                        ? PF + receiver.profilePicture
                         : 'https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg'
                     }
                   />
@@ -198,13 +223,22 @@ const Messenger = () => {
                   </div>
                 ))}
               </div>
-              <div className='chatMessageInput'>
+              <div
+                className={`chatMessageInput ${
+                  theme === 'dark' && 'chatMessageInput-dark'
+                }`}
+              >
                 <input
                   placeholder='Aa'
                   onChange={(e) => setNewMessage(e.target.value)}
                   value={newMessage}
                 />
-                <button className='chatSubmitButton' onClick={handleSubmit}>
+                <button
+                  className={`chatSubmitButton ${
+                    theme === 'dark' && 'chatSubmitButton-dark'
+                  }`}
+                  onClick={handleSubmit}
+                >
                   <SendIcon />
                 </button>
               </div>
@@ -216,7 +250,12 @@ const Messenger = () => {
           )}
         </div>
         <div className='chatUser'>
-          <div className='chatUserWrapper'></div>
+          {currentChat && (
+            <ChatUser
+              picture={receiver?.profilePicture}
+              name={receiver?.firstName + ' ' + receiver?.lastName}
+            />
+          )}
         </div>
       </div>
     </>
