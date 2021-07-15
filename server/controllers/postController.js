@@ -238,6 +238,12 @@ exports.addComment = async (req, res) => {
       return res.status(404).json({ message: 'No post with that Id' });
     }
 
+    if (!req.body.content) {
+      return res
+        .status(500)
+        .json({ message: 'Comment content can not be empty' });
+    }
+
     const newComment = new Comment({
       content: req.body.content,
       user: req.user.id,
@@ -341,6 +347,12 @@ exports.replyToComment = async (req, res) => {
       return res.status(404).json({
         message: 'No comment with that ID',
       });
+    }
+
+    if (!req.body.content) {
+      return res
+        .status(500)
+        .json({ message: 'Reply content can not be empty' });
     }
 
     const reply = {
