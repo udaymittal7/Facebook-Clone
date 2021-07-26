@@ -66,12 +66,7 @@ const Profile = () => {
         className={`profile-container ${theme === 'dark' && 'profile-dark'}`}
       >
         <div className='profile-left'>
-          <Intro
-            work={profileUser?.work}
-            education={profileUser?.education}
-            from={profileUser?.from}
-            lives={profileUser?.lives}
-          />
+          <Intro />
           <Photos
             posts={profilePosts}
             profilePicture={profileUser?.profilePicture}

@@ -272,12 +272,6 @@ exports.editComment = async (req, res) => {
 
     let comment = await Comment.findById(req.params.commentId);
 
-    if (req.user.id !== comment.user.toString()) {
-      return res
-        .status(500)
-        .json({ message: 'You can only edit your comment' });
-    }
-
     if (!comment) {
       return res
         .status(404)
