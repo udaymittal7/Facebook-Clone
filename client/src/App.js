@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 

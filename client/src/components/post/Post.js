@@ -1,5 +1,5 @@
 import { Avatar } from '@material-ui/core';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Post.css';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
@@ -50,6 +50,7 @@ const Post = ({
     dispatch(addComment(postId, content));
     setContent({ content: '' });
     setCommentClick(true);
+    window.location.reload();
   };
 
   const onChange = (e) => {

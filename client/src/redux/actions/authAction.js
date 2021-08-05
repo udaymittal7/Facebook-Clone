@@ -157,7 +157,6 @@ export const resetPassword = (data) => {
           'Content-Type': 'application/json',
         },
       };
-      console.log(data);
       const { url, password } = data;
       const res = await axios.patch(`/api/auth${url}`, { password }, config);
       dispatch({
@@ -355,7 +354,7 @@ export const acceptFriendRequest = (id) => {
         payload: res.data.user,
       });
 
-      toast.succes('You both are now friends.', {
+      toast.success('You both are now friends.', {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 2000,
       });

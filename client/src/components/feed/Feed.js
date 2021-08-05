@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import StoryReel from '../storyReel/StoryReel';
 import './Feed.css';
 import Share from '../share/Share';

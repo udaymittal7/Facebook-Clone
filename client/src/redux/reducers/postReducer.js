@@ -11,7 +11,6 @@ import {
 
 const initialState = {
   posts: [],
-  post: null,
   profilePosts: [],
   loading: true,
   error: null,
