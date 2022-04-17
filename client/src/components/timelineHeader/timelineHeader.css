@@ -81,6 +81,10 @@
   border-radius: 4px;
 }
 
+.timelineHeader-option-dark:hover {
+  background: #3a3b3c;
+}
+
 .timelineHeader-option-detail {
   font-size: small;
   margin-left: 4px;
@@ -114,6 +118,10 @@
 .timelineHeader-option-dropdown:hover {
   background: #eff2f5;
   border-radius: 4px;
+}
+
+.timelineHeader-option-dropdown-dark:hover {
+  background: #3a3b3c;
 }
 
 .timelineHeader-option-dropdown-icon {

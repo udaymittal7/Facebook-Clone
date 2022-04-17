@@ -11,12 +11,15 @@ const Feed = () => {
   const { posts } = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
+  let len = posts.length;
+
   useEffect(() => {
     dispatch(getPostsTimeline());
-  }, []);
+    len = posts.length;
+  }, [len]);
 
   return (
-    <div className='feed'>
+    <div className="feed">
       <StoryReel />
       <Share />
       {posts.map((post) => (

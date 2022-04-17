@@ -48,11 +48,12 @@
 }
 
 .widget:hover {
-  overflow-y: scroll;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .widget::-webkit-scrollbar {
-  width: 8px;
+  width: 0;
 }
 
 .widget::-webkit-scrollbar-track {

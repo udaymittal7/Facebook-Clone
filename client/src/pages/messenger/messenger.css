@@ -60,7 +60,7 @@
   border-radius: 33px;
   width: 95%;
   height: 38px;
-  margin: 15px 5px 0 5px;
+  margin: 15px 5px 10px 5px;
 }
 
 .chatMenuInput-dark {
@@ -79,8 +79,8 @@
 }
 
 .chatMenuConversation {
-  margin-top: 20px;
-  border-top: lightgray 1px solid;
+  /* margin-top: 10px; */
+  /* border-top: lightgray 1px solid; */
 }
 
 .chatMenuConversation-dark {

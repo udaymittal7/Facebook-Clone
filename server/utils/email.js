@@ -25,7 +25,7 @@ module.exports = class Email {
   async send(message, subject) {
     // 1) define the email options
     const mailOptions = {
-      from: 'udaymittal0123@gmail.com',
+      from: process.env.EMAIL_USERNAME,
       to: this.to,
       subject,
       text: message,

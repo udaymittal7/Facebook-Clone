@@ -54,7 +54,13 @@ const Messenger = () => {
 
   useEffect(() => {
     socket.current.emit('addUser', user._id);
-  }, [user]);
+    if (currentChat?.members.includes(user._id)) {
+      const receiverId = currentChat.members.find(
+        (member) => member !== user._id
+      );
+      receiverId && socket.current.emit('addUser', receiverId);
+    }
+  }, [user, currentChat]);
 
   useEffect(() => {
     const getConversations = async () => {
@@ -91,8 +97,6 @@ const Messenger = () => {
     const receiverId = currentChat.members.find(
       (member) => member !== user._id
     );
-
-    console.log(currentChat);
 
     socket.current.emit('sendMessage', {
       senderId: user._id,
@@ -135,9 +139,9 @@ const Messenger = () => {
       <Header />
       <div className={`messenger ${theme === 'dark' && 'messenger-dark'}`}>
         <div className={`chatMenu ${theme === 'dark' && 'chatMenu-dark'}`}>
-          <div className='chatMenuWrapper'>
-            <div className='chatMenuHeader'>
-              <div className='chatMenuHeading'>Chats</div>
+          <div className="chatMenuWrapper">
+            <div className="chatMenuHeader">
+              <div className="chatMenuHeading">Chats</div>
               <div
                 className={`chatMenuHeaderIcon ${
                   theme === 'dark' && 'chatMenuHeaderIcon-dark'
@@ -158,22 +162,19 @@ const Messenger = () => {
                 theme === 'dark' && 'chatMenuInput-dark'
               }`}
             >
-              <SearchIcon color='disabled' />
-              <input placeholder='Search Messenger' />
+              <SearchIcon color="disabled" />
+              <input placeholder="Search Messenger" />
             </div>
             {conversations &&
               conversations.map((c) => (
                 <div
+                  key={c._id}
                   onClick={() => setCurrentChat(c)}
                   className={`chatMenuConversation ${
                     theme === 'dark' && 'chatMenuConversation-dark'
                   }`}
                 >
-                  <Conversation
-                    conversation={c}
-                    currentUser={user}
-                    key={c._id}
-                  />
+                  <Conversation conversation={c} currentUser={user} />
                 </div>
               ))}
           </div>
@@ -181,45 +182,41 @@ const Messenger = () => {
         <div className={`chatBox ${theme === 'dark' && 'chatBox-dark'}`}>
           {currentChat ? (
             <div>
-              <div className='chatBoxHeader'>
+              <div className="chatBoxHeader">
                 <div
-                  className='chatBoxHeaderLeft'
+                  className="chatBoxHeaderLeft"
                   onClick={() => history.push(`/profile/${receiver._id}`)}
                 >
                   <Avatar
-                    className='chatBoxHeaderPicture'
-                    alt=''
+                    className="chatBoxHeaderPicture"
+                    alt=""
                     src={
                       receiver && receiver.profilePicture
                         ? PF + receiver.profilePicture
                         : 'https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg'
                     }
                   />
-                  <span className='chatBoxHeaderName'>
+                  <span className="chatBoxHeaderName">
                     {receiver?.firstName + ' ' + receiver?.lastName}
                   </span>
                 </div>
-                <div className='chatBoxHeaderRight'>
-                  <div className='chatBoxHeaderIcon'>
+                <div className="chatBoxHeaderRight">
+                  <div className="chatBoxHeaderIcon">
                     <CallIcon />
                   </div>
-                  <div className='chatBoxHeaderIcon'>
+                  <div className="chatBoxHeaderIcon">
                     <VideocamIcon />
                   </div>
-                  <div className='chatBoxHeaderIcon'>
+                  <div className="chatBoxHeaderIcon">
                     <InfoIcon />
                   </div>
                 </div>
               </div>
 
-              <div className='chatBoxMessages'>
+              <div className="chatBoxMessages">
                 {messages.map((m) => (
-                  <div ref={scrollRef}>
-                    <Message
-                      message={m}
-                      own={m.sender === user._id}
-                      key={m._id}
-                    />
+                  <div ref={scrollRef} key={m._id}>
+                    <Message message={m} own={m.sender === user._id} />
                   </div>
                 ))}
               </div>
@@ -229,7 +226,7 @@ const Messenger = () => {
                 }`}
               >
                 <input
-                  placeholder='Aa'
+                  placeholder="Aa"
                   onChange={(e) => setNewMessage(e.target.value)}
                   value={newMessage}
                 />
@@ -244,12 +241,12 @@ const Messenger = () => {
               </div>
             </div>
           ) : (
-            <div className='noConversationText'>
+            <div className="noConversationText">
               Open a conversation to start a chat.
             </div>
           )}
         </div>
-        <div className='chatUser'>
+        <div className="chatUser">
           {currentChat && (
             <ChatUser
               picture={receiver?.profilePicture}

@@ -53,7 +53,7 @@ const Header = () => {
     },
     content: {
       zIndex: 1000,
-      height: '35%',
+      height: '40%',
       width: '22%',
       marginTop: '15px',
       marginLeft: 'auto',
@@ -68,33 +68,31 @@ const Header = () => {
 
   return (
     <div className={`header ${theme === 'dark' && 'dark__header'}`}>
-      <div className='header__left'>
-        <Link to='/'>
+      <div className="header__left">
+        <Link to="/">
           <Avatar
-            src='https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512'
-            alt='FB-Logo'
-            className='header__logo'
+            src="https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512"
+            alt="FB-Logo"
+            className="header__logo"
           />
         </Link>
         <div className={`header__input${theme === 'dark' ? '__dark' : ''}`}>
-          <SearchIcon color='disabled' />
+          <SearchIcon color="disabled" />
           <input
-            type='text'
-            placeholder='Search Facebook'
-            className='header__input__text'
+            type="text"
+            placeholder="Search Facebook"
+            className="header__input__text"
           />
         </div>
       </div>
-      <div className='header__middle'>
-        <div className='header__options header__options--active'>
+      <div className="header__middle">
+        <div className="header__options header__options--active">
           <HomeIcon />
         </div>
         <div className={`header__options${theme === 'dark' ? '__dark' : ''}`}>
           <SubscriptionsIconOutlined />
         </div>
-        <div className={`header__options${theme === 'dark' ? '__dark' : ''}`}>
-          <StorefrontIconOutlined />
-        </div>
+
         <div className={`header__options${theme === 'dark' ? '__dark' : ''}`}>
           <SupervisedUserCircleIconOutlined />
         </div>
@@ -102,13 +100,13 @@ const Header = () => {
           <DashboardIconOutlined />
         </div>
       </div>
-      <div className='header__right'>
+      <div className="header__right">
         <div
           className={`header__info ${theme === 'dark' && 'header__info__dark'}`}
           onClick={() => history.push(`/profile/${user?._id}`)}
         >
           <Avatar src={user && PF + user.profilePicture} />
-          <span className='header__info__text'>{user?.firstName}</span>
+          <span className="header__info__text">{user?.firstName}</span>
         </div>
         <div
           className={`header__right__icons${theme === 'dark' ? '__dark' : ''}`}
@@ -137,19 +135,19 @@ const Header = () => {
             style={modalStyle}
             ariaHideApp={false}
           >
-            <div className='modal__container'>
+            <div className="modal__container">
               <div
-                className='modal__header'
+                className="modal__header"
                 onClick={() => history.push(`/profile/${user._id}`)}
               >
                 <Avatar src={user && PF + user.profilePicture} />
-                <span className='modal__header__text'>
+                <span className="modal__header__text">
                   {user?.firstName + ' ' + user?.lastName}
                 </span>
               </div>
-              <div className='modal__row'>
-                <div className='modal__row__title'>
-                  <div className='modal__row__text'>
+              <div className="modal__row">
+                <div className="modal__row__title">
+                  <div className="modal__row__text">
                     <Brightness2Icon /> Dark Mode
                   </div>
                 </div>
@@ -159,14 +157,14 @@ const Header = () => {
                   }`}
                   onClick={() => themeSetter('light')}
                 >
-                  <label htmlFor='off' className='modal__row__label'>
+                  <label htmlFor="off" className="modal__row__label">
                     Off
                   </label>
                   <input
-                    name='off'
-                    className='modal__row__option__radio'
-                    type='checkbox'
-                    value='Off'
+                    name="off"
+                    className="modal__row__option__radio"
+                    type="checkbox"
+                    value="Off"
                     checked={theme === 'light'}
                   />
                 </div>
@@ -176,14 +174,14 @@ const Header = () => {
                   }`}
                   onClick={() => themeSetter('dark')}
                 >
-                  <label htmlFor='on' className='modal__row__label'>
+                  <label htmlFor="on" className="modal__row__label">
                     On
                   </label>
                   <input
-                    name='on'
-                    className='modal__row__option__radio'
-                    type='checkbox'
-                    value='On'
+                    name="on"
+                    className="modal__row__option__radio"
+                    type="checkbox"
+                    value="On"
                     checked={theme === 'dark'}
                   />
                 </div>
@@ -195,7 +193,7 @@ const Header = () => {
                 onClick={onLogout}
               >
                 <MeetingRoomIcon />
-                <div className='modal__bottom__text'>Log Out</div>
+                <div className="modal__bottom__text">Log Out</div>
               </div>
             </div>
           </Modal>
