@@ -1,5 +1,5 @@
 import { Avatar } from '@material-ui/core';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Post.css';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
@@ -16,7 +16,7 @@ import {
 } from '../../redux/actions/postAction';
 import '../comment/comment.css';
 
-const Comment = ({ comment, postId }) => {
+const Comment = ({ comment }) => {
   const theme = localStorage.getItem('theme');
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -76,16 +76,16 @@ const Post = ({
     commentLen = comments.length;
   }, [commentLen]);
 
-  const likeHandler = (postId) => {
-    dispatch(addLike(postId));
+  const likeHandler = (id) => {
+    dispatch(addLike(id));
   };
 
-  const deleteHandler = (postId) => {
-    dispatch(deletePost(postId));
+  const deleteHandler = (id) => {
+    dispatch(deletePost(id));
   };
 
-  const commentSubmit = (postId) => {
-    dispatch(addComment(postId, content));
+  const commentSubmit = (id, postContent) => {
+    dispatch(addComment(id, postContent));
     setContent({ content: '' });
     setCommentClick(true);
     dispatch(getPostsTimeline());
