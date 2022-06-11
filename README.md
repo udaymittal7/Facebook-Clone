@@ -28,4 +28,4 @@ A Facebook Clone built using MERN Stack and Redux.
 - Clone the repository
 - Go to the project directory and run the following commands
 
-`npm run server` to start the backend and frontend concurrently.
+`npm run dev` to start the backend and frontend concurrently.
