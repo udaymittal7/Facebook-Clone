@@ -1,6 +1,5 @@
 node_modules/
 /.env
 .env.example
-public
 /build
 /client/build
