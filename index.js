@@ -43,7 +43,9 @@ app.use(cors());
 
 app.use(helmet());
 
-app.use(morgan('common'));
+if (process.env.NODE_ENV == 'development') {
+  app.use(morgan('common'));
+}
 
 // routes
 app.use('/api/auth', authRoute);
@@ -55,6 +57,21 @@ app.use('/api/conversations', conversationRoute);
 
 // undefined route
 app.all('*', (req, res) => {
+  res.status(404).json({
+    status: 'fail',
+    message: `Could not find ${req.url}`,
+  });
+});
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
+app.all('*', (req, res, next) => {
   res.status(404).json({
     status: 'fail',
     message: `Could not find ${req.url}`,
