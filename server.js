@@ -3,7 +3,6 @@ const express = require('express');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const morgan = require('morgan');
 const path = require('path');
 
 // intializing express
@@ -44,7 +43,7 @@ app.use(cors());
 app.use(helmet());
 
 if (process.env.NODE_ENV == 'development') {
-  app.use(morgan('common'));
+  app.use(require('morgan')('dev'));
 }
 
 // routes
