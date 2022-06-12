@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import './conversation.css';
 import axios from 'axios';
 import { Avatar } from '@material-ui/core';
+import { IMAGE_URL } from '../../constants/constants';
 
 const Conversation = ({ conversation, currentUser }) => {
   const [user, setUser] = useState(null);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = IMAGE_URL;
   const theme = localStorage.getItem('theme');
 
   useEffect(() => {
@@ -25,11 +26,11 @@ const Conversation = ({ conversation, currentUser }) => {
   return (
     <div className={`conversation ${theme === 'dark' && 'conversation-dark'}`}>
       <Avatar
-        className='conversationImg'
+        className="conversationImg"
         src={PF + user?.profilePicture}
-        alt=''
+        alt=""
       />
-      <span className='conversationName'>
+      <span className="conversationName">
         {user?.firstName + ' ' + user?.lastName}
       </span>
     </div>

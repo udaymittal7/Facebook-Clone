@@ -15,10 +15,11 @@ import {
   getPostsTimeline,
 } from '../../redux/actions/postAction';
 import '../comment/comment.css';
+import { IMAGE_URL } from '../../constants/constants';
 
 const Comment = ({ comment }) => {
   const theme = localStorage.getItem('theme');
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = IMAGE_URL;
 
   return (
     <div
@@ -67,7 +68,7 @@ const Post = ({
 
   const [content, setContent] = useState({ content: '' });
 
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = IMAGE_URL;
 
   let commentLen = comments.length;
 

@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 import './comment.css';
+import { IMAGE_URL } from '../../constants/constants';
 
 const Comment = ({ comment }) => {
   const theme = localStorage.getItem('theme');
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = IMAGE_URL;
 
   return (
     <div

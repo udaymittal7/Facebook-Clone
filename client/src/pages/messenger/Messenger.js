@@ -16,9 +16,10 @@ import axios from 'axios';
 import SocketIoClient from 'socket.io-client';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { IMAGE_URL } from '../../constants/constants';
 
 const Messenger = () => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = IMAGE_URL;
 
   const theme = localStorage.getItem('theme');
 

@@ -4,9 +4,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
 import DashboardIconOutlined from '@material-ui/icons/DashboardOutlined';
 import SubscriptionsIconOutlined from '@material-ui/icons/SubscriptionsOutlined';
-import StorefrontIconOutlined from '@material-ui/icons/StorefrontOutlined';
 import SupervisedUserCircleIconOutlined from '@material-ui/icons/SupervisedUserCircleOutlined';
-import { Avatar, IconButton } from '@material-ui/core';
+import { Avatar } from '@material-ui/core';
 import AppsIcon from '@material-ui/icons/Apps';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ChatIcon from '@material-ui/icons/Chat';
@@ -17,6 +16,7 @@ import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { logout, loadUser } from '../../redux/actions/authAction';
+import { IMAGE_URL } from '../../constants/constants';
 
 const Header = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -25,7 +25,7 @@ const Header = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = IMAGE_URL;
 
   useEffect(() => {
     dispatch(loadUser());

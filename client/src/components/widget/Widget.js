@@ -4,26 +4,27 @@ import SearchIcon from '@material-ui/icons/Search';
 import Friend from '../friend/Friend';
 import './Widget.css';
 import { Link } from 'react-router-dom';
+import { IMAGE_URL } from '../../constants/constants';
 
 function Widget({ friends }) {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = IMAGE_URL;
 
   return (
-    <div className='widget'>
-      <div className='widget-header'>
-        <div className='widget-heading'>Contacts</div>
-        <div className='widget-header-icon'>
+    <div className="widget">
+      <div className="widget-header">
+        <div className="widget-heading">Contacts</div>
+        <div className="widget-header-icon">
           <VideoCallIcon />
         </div>
-        <div className='widget-header-icon'>
+        <div className="widget-header-icon">
           <SearchIcon />
         </div>
       </div>
       <Link
-        to='/messages/'
+        to="/messages/"
         style={{ textDecoration: 'none', color: 'inherit' }}
       >
-        <ul className='widget-friendlist'>
+        <ul className="widget-friendlist">
           {friends?.length > 0 &&
             friends.map((friend) => (
               <Friend

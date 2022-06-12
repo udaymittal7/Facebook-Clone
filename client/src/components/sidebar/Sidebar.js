@@ -3,10 +3,11 @@ import './Sidebar.css';
 import SidebarRow from '../sidebarRow/SidebarRow';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { IMAGE_URL } from '../../constants/constants';
 
 const Sidebar = () => {
   const { user } = useSelector((state) => state.auth);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = IMAGE_URL;
 
   return (
     <div className="sidebar">
