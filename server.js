@@ -40,7 +40,7 @@ app.use(express.json({ extended: false }));
 
 app.use(cors());
 
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 
 if (process.env.NODE_ENV == 'development') {
   app.use(require('morgan')('dev'));
