@@ -54,14 +54,6 @@ app.use('/api/story', storyRoute);
 app.use('/api/messages', messageRoute);
 app.use('/api/conversations', conversationRoute);
 
-// undefined route
-app.all('*', (req, res) => {
-  res.status(404).json({
-    status: 'fail',
-    message: `Could not find ${req.url}`,
-  });
-});
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 
@@ -70,12 +62,14 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.all('*', (req, res, next) => {
-  res.status(404).json({
-    status: 'fail',
-    message: `Could not find ${req.url}`,
+if (process.env.NODE_ENV === 'development') {
+  app.all('*', (req, res, next) => {
+    res.status(404).json({
+      status: 'fail',
+      message: `Could not find ${req.url}`,
+    });
   });
-});
+}
 
 // socket io
 let users = [];
