@@ -181,7 +181,7 @@ const Messenger = () => {
         </div>
         <div className={`chatBox ${theme === 'dark' && 'chatBox-dark'}`}>
           {currentChat ? (
-            <div>
+            <div className="chatBoxMiddleContainer">
               <div className="chatBoxHeader">
                 <div
                   className="chatBoxHeaderLeft"
@@ -220,6 +220,7 @@ const Messenger = () => {
                   </div>
                 ))}
               </div>
+
               <div
                 className={`chatMessageInput ${
                   theme === 'dark' && 'chatMessageInput-dark'
@@ -229,6 +230,7 @@ const Messenger = () => {
                   placeholder="Aa"
                   onChange={(e) => setNewMessage(e.target.value)}
                   value={newMessage}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSubmit(e)}
                 />
                 <button
                   className={`chatSubmitButton ${

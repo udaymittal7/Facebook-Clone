@@ -85,7 +85,7 @@ const Post = ({
   };
 
   const commentSubmit = (id, postContent) => {
-    dispatch(addComment(id, postContent));
+    dispatch(addComment(id, postContent.content));
     setContent({ content: '' });
     setCommentClick(true);
     dispatch(getPostsTimeline());
@@ -200,20 +200,18 @@ const Post = ({
           />
         </form>
         {commentClick &&
-          comments.length &&
-          comments.map((comment) => {
-            return (
-              <>
-                <div className="post__comments__friends">
-                  <Comment
-                    key={comment._id}
-                    comment={comment}
-                    postId={profilePostId || postId}
-                  />
-                </div>
-              </>
-            );
-          })}
+          comments.length > 0 &&
+          comments.map((comment) => (
+            <>
+              <div className="post__comments__friends">
+                <Comment
+                  key={comment._id}
+                  comment={comment}
+                  postId={profilePostId || postId}
+                />
+              </div>
+            </>
+          ))}
       </div>
     </div>
   );
