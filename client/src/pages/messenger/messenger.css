@@ -96,7 +96,14 @@
   border-right: 1px #3a3b3c solid;
 }
 
+.chatBoxMiddleContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1 3 1;
+}
+
 .chatBoxHeader {
+  z-index: 5;
   display: flex;
   align-items: center;
   position: sticky;
@@ -141,21 +148,34 @@
 }
 
 .chatBoxMessages {
-  height: 100%;
-  overflow-y: hidden;
+  overflow-y: scroll;
   padding-right: 10px;
+  height: 75vh;
+}
+
+.chatBoxMessages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chatBoxMessages::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: inset 7px 10px 12px #f0f0f0;
+}
+
+.chatBoxMessages::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 5px;
 }
 
 .chatMessageInput {
-  position: absolute;
-  bottom: 10px;
-  margin: 10px 10px 0 10px;
+  margin: 10px;
   display: flex;
   align-items: center;
   background-color: #eff2f5;
   padding: 10px;
   border-radius: 33px;
-  width: 49%;
+  width: 98%;
   height: 40px;
 }
 
