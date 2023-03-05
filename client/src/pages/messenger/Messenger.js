@@ -16,7 +16,7 @@ import axios from 'axios';
 import SocketIoClient from 'socket.io-client';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { PUBLIC_FOLDER as PF } from '../../constants';
+import { BACKEND_URL, PUBLIC_FOLDER as PF } from '../../constants';
 
 const Messenger = () => {
   const theme = localStorage.getItem('theme');
@@ -64,7 +64,9 @@ const Messenger = () => {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get('/api/conversations/' + user._id);
+        const res = await axios.get(
+          BACKEND_URL + '/api/conversations/' + user._id
+        );
         setConversations(res.data);
       } catch (err) {
         console.log(err);
@@ -76,7 +78,9 @@ const Messenger = () => {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await axios.get('/api/messages/' + currentChat?._id);
+        const res = await axios.get(
+          BACKEND_URL + '/api/messages/' + currentChat?._id
+        );
         setMessages(res.data);
       } catch (err) {
         console.log(err);
@@ -104,7 +108,7 @@ const Messenger = () => {
     });
 
     try {
-      const res = await axios.post('/api/messages', message);
+      const res = await axios.post(BACKEND_URL + '/api/messages', message);
       setMessages([...messages, res.data]);
       setNewMessage('');
     } catch (err) {
@@ -119,7 +123,7 @@ const Messenger = () => {
           const receiverId = currentChat.members.find(
             (member) => member !== user._id
           );
-          const res = await axios.get(`/api/user/${receiverId}`);
+          const res = await axios.get(`${BACKEND_URL}/api/user/${receiverId}`);
           setReceiver(res.data);
         } catch (err) {
           console.log(err);

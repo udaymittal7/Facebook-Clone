@@ -21,6 +21,7 @@ import {
 } from './types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BACKEND_URL } from '../../constants';
 
 toast.configure();
 
@@ -32,7 +33,11 @@ export const signup = (user) => {
           'Content-Type': 'application/json',
         },
       };
-      const res = await axios.post('/api/auth/register', user, config);
+      const res = await axios.post(
+        BACKEND_URL + '/api/auth/register',
+        user,
+        config
+      );
       dispatch({
         type: SIGNUP_USER,
         payload: res.data,
@@ -72,7 +77,11 @@ export const login = (user) => {
           'Content-Type': 'application/json',
         },
       };
-      const res = await axios.post('/api/auth/login', user, config);
+      const res = await axios.post(
+        BACKEND_URL + '/api/auth/login',
+        user,
+        config
+      );
       dispatch({
         type: LOGIN_USER,
         payload: res.data,
@@ -126,7 +135,11 @@ export const sendResetPasswordEmail = (email) => {
           'Content-Type': 'application/json',
         },
       };
-      const res = await axios.patch('/api/auth/forgotPassword', email, config);
+      const res = await axios.patch(
+        BACKEND_URL + '/api/auth/forgotPassword',
+        email,
+        config
+      );
       dispatch({
         type: EMAIL_SUCCESS,
         payload: res.data.message,
@@ -158,7 +171,11 @@ export const resetPassword = (data) => {
         },
       };
       const { url, password } = data;
-      const res = await axios.patch(`/api/auth${url}`, { password }, config);
+      const res = await axios.patch(
+        `${BACKEND_URL}/api/auth${url}`,
+        { password },
+        config
+      );
       dispatch({
         type: RESET_PASSWORD_SUCCESS,
         payload: res.data,
@@ -188,7 +205,7 @@ export const loadUser = () => {
     }
 
     try {
-      const res = await axios.get('/api/auth');
+      const res = await axios.get(BACKEND_URL + '/api/auth');
       dispatch({
         type: USER_LOADED,
         payload: res.data,
@@ -203,7 +220,7 @@ export const loadUser = () => {
 export const loadProfileUser = (id) => {
   return async (dispatch) => {
     try {
-      const res = await axios.get(`/api/user/${id}`);
+      const res = await axios.get(`${BACKEND_URL}/api/user/${id}`);
       dispatch({
         type: LOAD_PROFILE_USER,
         payload: res.data,
@@ -224,7 +241,7 @@ export const updatePicture = (id, formData) => {
         },
       };
       const res = await axios.patch(
-        `/api/user/updateUser/${id}`,
+        `${BACKEND_URL}/api/user/updateUser/${id}`,
         formData,
         config
       );
@@ -255,7 +272,11 @@ export const updateUser = (id, data) => {
           'Content-Type': 'application/json',
         },
       };
-      const res = await axios.patch(`/api/user/updateUser/${id}`, data, config);
+      const res = await axios.patch(
+        `${BACKEND_URL}/api/user/updateUser/${id}`,
+        data,
+        config
+      );
       dispatch({
         type: UPDATE_USER,
         payload: res.data,
@@ -284,7 +305,10 @@ export const removeUserFriend = (id) => {
           'Content-Type': 'application/json',
         },
       };
-      const res = await axios.patch(`/api/user/removeFriend/${id}`, config);
+      const res = await axios.patch(
+        `${BACKEND_URL}/api/user/removeFriend/${id}`,
+        config
+      );
       dispatch({
         type: REMOVE_FRIEND,
         payload: res.data.user,
@@ -314,7 +338,7 @@ export const sendFriendRequest = (id) => {
         },
       };
       const res = await axios.patch(
-        `/api/user/sendFriendRequest/${id}`,
+        `${BACKEND_URL}/api/user/sendFriendRequest/${id}`,
         config
       );
       dispatch({
@@ -346,7 +370,7 @@ export const acceptFriendRequest = (id) => {
         },
       };
       const res = await axios.patch(
-        `/api/user/acceptFriendRequest/${id}`,
+        `${BACKEND_URL}/api/user/acceptFriendRequest/${id}`,
         config
       );
       dispatch({

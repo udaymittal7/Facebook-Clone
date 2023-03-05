@@ -11,6 +11,7 @@ import {
 } from './types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BACKEND_URL } from '../../constants';
 
 toast.configure();
 
@@ -18,7 +19,7 @@ toast.configure();
 export const getPostsTimeline = () => {
   return async (dispatch) => {
     try {
-      const res = await axios.get('/api/post/timeline');
+      const res = await axios.get(BACKEND_URL + '/api/post/timeline');
       dispatch({
         type: GET_POSTS_TIMELINE,
         payload: res.data.sort((post1, post2) => {
@@ -41,7 +42,7 @@ export const getPostsTimeline = () => {
 export const getPostsProfile = (id) => {
   return async (dispatch) => {
     try {
-      const res = await axios.get(`/api/post/profile/${id}`);
+      const res = await axios.get(`${BACKEND_URL}/api/post/profile/${id}`);
 
       dispatch({
         type: GET_POSTS_PROFILE,
@@ -66,7 +67,9 @@ export const getPostsProfile = (id) => {
 export const addLike = (postId) => {
   return async (dispatch) => {
     try {
-      const res = await axios.put(`/api/post/${postId}/likeUnlike`);
+      const res = await axios.put(
+        `${BACKEND_URL}/api/post/${postId}/likeUnlike`
+      );
 
       dispatch({ type: UPDATE_LIKES, payload: { likes: res.data, postId } });
     } catch (err) {
@@ -85,7 +88,7 @@ export const addLike = (postId) => {
 export const deletePost = (id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`/api/post/delete/${id}`);
+      await axios.delete(`${BACKEND_URL}/api/post/delete/${id}`);
       dispatch({ type: DELETE_POST, payload: id });
       toast.success('Post Deleted', {
         position: toast.POSITION.TOP_CENTER,
@@ -116,7 +119,11 @@ export const createPost = (formData) => {
           'Content-Type': 'multipart/form-data',
         },
       };
-      const res = await axios.post('/api/post/create', formData, config);
+      const res = await axios.post(
+        BACKEND_URL + '/api/post/create',
+        formData,
+        config
+      );
 
       dispatch({ type: ADD_POST, payload: res.data });
       toast.success('New Post Created', {
@@ -150,7 +157,7 @@ export const addComment = (postId, formData) => {
         },
       };
       const res = await axios.put(
-        `/api/post/${postId}/addComment`,
+        `${BACKEND_URL}/api/post/${postId}/addComment`,
         formData,
         config
       );
@@ -180,7 +187,9 @@ export const addComment = (postId, formData) => {
 export const deleteComment = (postId, commentId) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`/api/post/comment/${postId}/${commentId}`);
+      await axios.delete(
+        `${BACKEND_URL}/api/post/comment/${postId}/${commentId}`
+      );
 
       dispatch({ type: DELETE_COMMENT, payload: { postId, commentId } });
       toast.success('Comment Deleted', {
