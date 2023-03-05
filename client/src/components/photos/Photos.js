@@ -1,14 +1,14 @@
 import React from 'react';
 import './photos.css';
+import { PUBLIC_FOLDER as PF } from '../../constants';
 
 const Photos = ({ posts, profilePicture, coverPicture }) => {
   const theme = localStorage.getItem('theme');
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (
     <div className={`photos-container ${theme === 'dark' && 'photo-dark'}`}>
-      <div className='photos-top'>
-        <div className='photos-header'>Photos</div>
+      <div className="photos-top">
+        <div className="photos-header">Photos</div>
         <div
           className={`photos-button ${
             theme === 'dark' && 'photos-button-dark'
@@ -17,15 +17,15 @@ const Photos = ({ posts, profilePicture, coverPicture }) => {
           See All Photos
         </div>
       </div>
-      <div className='photos-bottom'>
+      <div className="photos-bottom">
         {posts?.length > 0 &&
           posts.map(
             (post) =>
               post?.image && (
                 <img
                   src={PF + post?.image}
-                  alt=''
-                  className='photos'
+                  alt=""
+                  className="photos"
                   key={post?._id}
                 />
               )
@@ -35,16 +35,16 @@ const Photos = ({ posts, profilePicture, coverPicture }) => {
             (profilePicture && PF + profilePicture) ||
             'https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg'
           }
-          alt=''
-          className='photos'
+          alt=""
+          className="photos"
         />
         <img
           src={
             (coverPicture && PF + coverPicture) ||
             'https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg'
           }
-          alt=''
-          className='photos'
+          alt=""
+          className="photos"
         />
       </div>
     </div>

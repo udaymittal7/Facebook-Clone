@@ -16,10 +16,9 @@ import axios from 'axios';
 import SocketIoClient from 'socket.io-client';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { PUBLIC_FOLDER as PF } from '../../constants';
 
 const Messenger = () => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
   const theme = localStorage.getItem('theme');
 
   const user = useSelector((state) => state.auth.user);

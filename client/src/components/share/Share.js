@@ -8,10 +8,9 @@ import './share.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createPost, getPostsTimeline } from '../../redux/actions/postAction';
+import { PUBLIC_FOLDER as PF } from '../../constants';
 
 const Share = () => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
   const theme = localStorage.getItem('theme');
 
   const [media, setMedia] = useState(null);
@@ -47,27 +46,27 @@ const Share = () => {
         </Link>
         <input
           ref={desc}
-          className='share__input'
+          className="share__input"
           placeholder={`What's on your mind, ${user.firstName}?`}
         />
-        <button className='share__button' type='submit'>
+        <button className="share__button" type="submit">
           Share
         </button>
       </div>
       {media && (
-        <div className='share__imageContainer'>
+        <div className="share__imageContainer">
           <img
             src={URL.createObjectURL(media)}
-            alt=''
-            className='share__image'
+            alt=""
+            className="share__image"
           />
           <CancelIcon
-            className='share__cancelImage'
+            className="share__cancelImage"
             onClick={() => setMedia(null)}
           />
         </div>
       )}
-      <div className='share__bottom'>
+      <div className="share__bottom">
         <div
           className={`share__options ${
             theme === 'dark' && 'share__options__dark'
@@ -85,9 +84,9 @@ const Share = () => {
           <PhotoLibraryIcon style={{ color: 'green' }} />
           <div>Photo/Video</div>
           <input
-            type='file'
-            name='media'
-            accept='.png, .jpeg, .jpg'
+            type="file"
+            name="media"
+            accept=".png, .jpeg, .jpg"
             onChange={(e) => setMedia(e.target.files[0])}
             style={{ display: 'none' }}
           />

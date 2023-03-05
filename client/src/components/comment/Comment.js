@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
+import { PUBLIC_FOLDER as PF } from '../../constants';
 import './comment.css';
 
 const Comment = ({ comment }) => {
   const theme = localStorage.getItem('theme');
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (
     <div

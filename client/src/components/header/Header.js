@@ -17,6 +17,7 @@ import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { logout, loadUser } from '../../redux/actions/authAction';
+import { PUBLIC_FOLDER as PF } from '../../constants';
 
 const Header = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -24,8 +25,6 @@ const Header = () => {
   const { user } = useSelector((state) => state.auth);
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
     dispatch(loadUser());

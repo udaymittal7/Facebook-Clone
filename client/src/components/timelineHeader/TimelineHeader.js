@@ -19,6 +19,7 @@ import {
   updatePicture,
 } from '../../redux/actions/authAction';
 import { useHistory, useParams } from 'react-router-dom';
+import { PUBLIC_FOLDER as PF } from '../../constants';
 
 const TimelineHeader = ({
   profilePicture,
@@ -30,8 +31,6 @@ const TimelineHeader = ({
   checkRequest,
   checkPending,
 }) => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
   const theme = localStorage.getItem('theme');
 
   const history = useHistory();
@@ -95,7 +94,7 @@ const TimelineHeader = ({
         theme === 'dark' && 'timelineHeader-container-dark'
       }`}
     >
-      <div className='timelineHeader-coverImage-container'>
+      <div className="timelineHeader-coverImage-container">
         <img
           src={
             coverImage
@@ -103,23 +102,23 @@ const TimelineHeader = ({
               : (coverPicture && PF + coverPicture) ||
                 'https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg'
           }
-          className='timelineHeader-coverImage'
+          className="timelineHeader-coverImage"
         />
         {myProfile && (
           <label
-            className='timelineHeader-coverImage-edit'
+            className="timelineHeader-coverImage-edit"
             htmlFor={coverImage}
           >
             {!coverImage ? (
               <>
-                <CameraAltIcon className='timelineHeader-coverImage-edit-logo' />
-                <div className='timelineHeader-coverImage-edit-text'>
+                <CameraAltIcon className="timelineHeader-coverImage-edit-logo" />
+                <div className="timelineHeader-coverImage-edit-text">
                   Edit Cover Photo
                 </div>
                 <input
-                  type='file'
-                  name='media'
-                  accept='.png, .jpeg, .jpg'
+                  type="file"
+                  name="media"
+                  accept=".png, .jpeg, .jpg"
                   onChange={(e) => setCoverImage(e.target.files[0])}
                   style={{ display: 'none' }}
                 />
@@ -127,14 +126,14 @@ const TimelineHeader = ({
             ) : (
               <>
                 <CheckIcon
-                  className='timelineHeader-coverImage-save'
+                  className="timelineHeader-coverImage-save"
                   onClick={(e) => {
                     e.preventDefault();
                     updateCoverImage();
                   }}
                 />
                 <CancelIcon
-                  className='timelineHeader-coverImage-cancel'
+                  className="timelineHeader-coverImage-cancel"
                   onClick={(e) => {
                     e.preventDefault();
                     setCoverImage(null);
@@ -144,7 +143,7 @@ const TimelineHeader = ({
             )}
           </label>
         )}
-        <div className='timelineHeader-profileImage-container'>
+        <div className="timelineHeader-profileImage-container">
           <img
             src={
               profileImage
@@ -152,21 +151,21 @@ const TimelineHeader = ({
                 : (profilePicture && PF + profilePicture) ||
                   'https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg'
             }
-            alt=''
-            className='timelineHeader-profileImage'
+            alt=""
+            className="timelineHeader-profileImage"
           />
           {myProfile && (
             <label
-              className='timelineHeader-profileImage-edit'
+              className="timelineHeader-profileImage-edit"
               htmlFor={profileImage}
             >
               {!profileImage ? (
                 <>
-                  <CameraAltIcon className='timelineHeader-profileImage-edit-logo' />
+                  <CameraAltIcon className="timelineHeader-profileImage-edit-logo" />
                   <input
-                    type='file'
-                    name='media'
-                    accept='.png, .jpeg, .jpg'
+                    type="file"
+                    name="media"
+                    accept=".png, .jpeg, .jpg"
                     onChange={(e) => setProfileImage(e.target.files[0])}
                     style={{ display: 'none' }}
                   />
@@ -174,14 +173,14 @@ const TimelineHeader = ({
               ) : (
                 <>
                   <CheckIcon
-                    className='timelineHeader-profileImage-save'
+                    className="timelineHeader-profileImage-save"
                     onClick={(e) => {
                       e.preventDefault();
                       updateProfileImage();
                     }}
                   />
                   <CancelIcon
-                    className='timelineHeader-profileImage-edit-cancel'
+                    className="timelineHeader-profileImage-edit-cancel"
                     onClick={(e) => {
                       e.preventDefault();
                       setProfileImage(null);
@@ -193,11 +192,11 @@ const TimelineHeader = ({
           )}
         </div>
       </div>
-      <div className='timelineHeader-username'>{username}</div>
-      <div className='timelineHeader-border' />
-      <div className='timelineHeader-optionsBar'>
-        <div className='timelineHeader-options'>
-          <div className='timelineHeader-option timelineHeader-option-active'>
+      <div className="timelineHeader-username">{username}</div>
+      <div className="timelineHeader-border" />
+      <div className="timelineHeader-optionsBar">
+        <div className="timelineHeader-options">
+          <div className="timelineHeader-option timelineHeader-option-active">
             Posts
           </div>
           <div
@@ -213,7 +212,7 @@ const TimelineHeader = ({
             }`}
           >
             Friends{' '}
-            <span className='timelineHeader-option-detail'>{friends}</span>
+            <span className="timelineHeader-option-detail">{friends}</span>
           </div>
           <div
             className={`timelineHeader-option ${
@@ -235,14 +234,14 @@ const TimelineHeader = ({
             }`}
           >
             More
-            <span className='timelineHeader-option-dropdown-icon'>
+            <span className="timelineHeader-option-dropdown-icon">
               <ArrowDropDownIcon />
             </span>
           </div>
         </div>
-        <div className='timelineHeader-icons'>
+        <div className="timelineHeader-icons">
           <button
-            className='timelineHeader-icon'
+            className="timelineHeader-icon"
             style={{ color: 'white', backgroundColor: '#2e81f4' }}
             onClick={
               checkFriend
