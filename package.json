@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "server:dev": "nodemon server.js",
+    "start": "node index.js",
+    "server:dev": "nodemon index.js",
     "client": "npm start --prefix client",
     "client-install": "npm install --prefix client",
     "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
